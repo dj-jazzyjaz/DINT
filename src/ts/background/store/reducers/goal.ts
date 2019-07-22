@@ -34,7 +34,7 @@ const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 				return {
 					...state, 
 					current: {
-						amount: payload.product && state.current? 
+						amount: payload.product && state.current ? 
 						state.current.amount + payload.product.cost : NaN,
 					}
 				}
