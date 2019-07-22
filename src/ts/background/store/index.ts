@@ -2,8 +2,10 @@ import settings, { IAppSettings } from './reducers/settings';
 import { combineReducers } from "redux";
 import counter, { ICounter } from './reducers/counter';
 import notification, {INotification} from './reducers/notification';
-
 import "redux";
+import product, { IProduct } from './reducers/product';
+import goal, { IGoal } from './reducers/goal';
+
 // Enhance the Action interface with the option of a payload. 
 // While still importing the Action interface from redux.
 declare module "redux" {
@@ -17,6 +19,8 @@ export interface IAppState {
 	counter: ICounter;
 	settings: IAppSettings;
 	notification: INotification;
+	product: IProduct; 
+	goal: IGoal;
 }
 
 export const loadState = ():IAppState | undefined => {
@@ -46,7 +50,9 @@ export const saveState = (appstate: IAppState,
 const reducers = combineReducers<IAppState>({
 	counter,
 	settings,
-	notification
+	notification,
+	product,
+	goal,
 });
 
 export default reducers;

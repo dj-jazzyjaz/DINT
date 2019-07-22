@@ -1,5 +1,9 @@
 import { Action } from 'redux';
-import { Product, NotificationType } from '../reducers/notification';
+import { NotificationType } from '../reducers/notification';
+import { Product } from '../reducers/product';
+import { store } from '../..';
+import { addToPurchaseHistory } from './productActions';
+import { countProductTowardsGoal } from './goalActions';
 
 export type NotificationActionTypes = 'NEWNOTIF' | 'BUY' | 'DONTBUY';
 export interface NotificationPayload {
@@ -17,6 +21,7 @@ export function newNotif(payload: NotificationPayload) {
 }
 
 export function buy(payload: NotificationPayload) {
+    if (payload.product) store.dispatch(addToPurchaseHistory(payload.product))
     return ({
         type: 'BUY',
         payload: payload
@@ -24,6 +29,7 @@ export function buy(payload: NotificationPayload) {
 }
 
 export function dontBuy(payload: NotificationPayload) {
+    if (payload.product) store.dispatch(countProductTowardsGoal(payload.product))
     return ({
         type: 'DONTBUY',
         payload: payload
