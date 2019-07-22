@@ -2,7 +2,7 @@
 
 </div>
 
-This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. Below is the setup documentention from that repo: 
+This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. Below is the setup doc from that repo: 
 
 ## Good to know before using:
 * [Typescript](https://www.typescriptlang.org/)
