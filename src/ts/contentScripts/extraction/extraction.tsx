@@ -12,13 +12,11 @@ export abstract class IExtractor {
             this.isCartPage(),
             this.isCheckoutPage()
         ]
-
-        results = results.filter(x => x)
         if (debug) {
             debugger;
-            alert((results.length) + " patterns match the page.")
+            alert((results.filter(x => x).length) + " pattern(s) match the page.")
         }
-        return results.length == 1 ? results[0] : null;
+        return results.filter(x => x).length == 1 ? results[0] : null;
     }
 }
 
