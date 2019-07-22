@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { IAppState } from '../../background/store';
-import Counter from '../../components/counter/Counter';
+import Notification from '../../components/notification/Notification';
 import { themes, ThemeTypes } from '../../components/styles/themes';
 
 
@@ -19,7 +19,7 @@ class CounterApp extends React.Component<ICounterApp> {
             <ThemeProvider theme={themes[this.props.theme]}>
                 <React.Fragment>
                     <CounterAppContainer >
-                        <Counter />
+                        <Notification />
                     </CounterAppContainer>
                 </React.Fragment>
             </ThemeProvider>
