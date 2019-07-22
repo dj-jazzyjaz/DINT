@@ -6,7 +6,7 @@ import Notification from './Notification';
 
 import { createDomAnchor } from '../../scripts/dom';
 
-createDomAnchor('counter-root')
+createDomAnchor('notification-root')
 
 const store = new Store({
     portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
@@ -17,5 +17,5 @@ store.ready().then(() => {
         <Provider store={store}>
             <Notification/>
         </Provider>
-        , document.getElementById('counter-root'))
+        , document.getElementById('notification-root'))
 });
