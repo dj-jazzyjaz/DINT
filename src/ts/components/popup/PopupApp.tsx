@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { IAppState } from '../../background/store';
-import Counter from '../counter/Counter';
+import Notification from "../../components/notification/Notification"
 import GlobalStyle from '../../components/styles/GlobalStyle';
 import { themes, ThemeTypes } from '../../components/styles/themes';
 
@@ -20,7 +20,7 @@ class PopupApp extends React.Component<IPopupApp> {
 				<React.Fragment>
 					<GlobalStyle />
 					<PopupAppContainer>
-						<Counter />
+						<Notification />
 					</PopupAppContainer>
 				</React.Fragment>
 			</ThemeProvider>

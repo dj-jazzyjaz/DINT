@@ -6,7 +6,8 @@ export interface Product {
 	cost: number,
 	sustInfo?: string,
 	desc?: string,
-	pic?: ImageBitmap,
+	imgSrc?: string,
+	datePurchased?: Date,
 }
 
 export interface IProduct {
