@@ -1,10 +1,8 @@
-<div align="center">
-
-# Web Extension Starter
+# DINT
 
 </div>
 
-This project containes a minimal setup for developing a performant and well structured web extension. The extension contains a demonstration counter that is displayed on the popup and options pages as well as any open tab. 
+This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. Below is the setup documentention from that repo: 
 
 ## Good to know before using:
 * [Typescript](https://www.typescriptlang.org/)
@@ -15,7 +13,7 @@ This project containes a minimal setup for developing a performant and well stru
 
 
 ## Requirements:
-* [NodeJS](https://nodejs.org/en/) - Javascript runtime
+* [NodeJS](https://nodejs.org/en/) - Javascript runtime -- Use version 10
 * [VSCode](https://code.visualstudio.com/) - Recomended editor
 * [Chrome](https://www.google.com/chrome/) or [Firefox](https://www.mozilla.org/en-US/firefox/) - Web browser
 
