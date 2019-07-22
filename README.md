@@ -2,8 +2,21 @@
 
 </div>
 
-This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. Below is the setup doc from that repo: 
+This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. See below for the setup doc from that repo.
 
+## Repo structure
+ts
+-background
+---store
+-----AppConfig.ts
+-----reducers
+-----actions 
+---index.ts
+-scripts
+-components
+-contentScripts
+
+### Set up info: 
 ## Good to know before using:
 * [Typescript](https://www.typescriptlang.org/)
 * [React](https://reactjs.org/)
