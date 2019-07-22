@@ -38,8 +38,8 @@
     },
     "content_scripts": [
         {
-            "js": ["counter.js"],
-            "matches": ["*://*/*"]
+            "js": ["extraction.js"],
+            "matches": ["https://www.amazon.com/*"]
         }
     ]
 }
