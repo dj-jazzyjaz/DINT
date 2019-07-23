@@ -1,7 +1,7 @@
 import {Extractor} from "./Extractor"
 import {Listener} from "./Listener/AmazonListener"
 
-var extractor = new Extractor(true);
+var extractor = new Extractor(false);
 extractor.getPage();
 extractor.getProduct();
 
