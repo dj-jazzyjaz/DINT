@@ -4,6 +4,7 @@ import { ProductActions } from '../actions/productActions';
 export interface Product {
 	productName: string,
 	cost: number,
+	site?: string,
 	sustInfo?: string,
 	desc?: string,
 	imgSrc?: string,
