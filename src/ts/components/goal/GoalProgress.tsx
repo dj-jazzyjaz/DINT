@@ -82,5 +82,4 @@ const GoalContainer = styled('div')`
 `;
 
 const CatContainer = styled('div')`
-    margin: 10px;
 `;

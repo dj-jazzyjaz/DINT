@@ -4,23 +4,38 @@ import { Dispatch } from 'redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
 import { ThemeTypes } from '../styles/themes';
-import { Trophy } from '../../../assets/SVGIcons';
+import { Trophy, Ringer, Settings } from '../../../assets/SVGIcons';
+import { changeView } from '../../background/store/actions/viewsActions';
 
-interface IPopupApp {
+interface IHeader {
 	theme: ThemeTypes;
 	dispatch: Dispatch;
 }
 
-class PopupApp extends React.Component<IPopupApp> {
+class Header extends React.Component<IHeader> {
+	constructor(props: IHeader) {
+		super(props);
+
+		this.onGoalClick = this.onGoalClick.bind(this);
+		this.onSettingsClick = this.onSettingsClick.bind(this);
+	}
+
+	onGoalClick () {
+		this.props.dispatch(changeView("GOALPROGRESS"));
+	}
+
+	onSettingsClick () {
+		this.props.dispatch(changeView("SETTINGS"));
+	}
 
 	render() {
 		return (
 			<HeaderContainer>
 				<Display>DINT</Display>
 				<Buttons>
-					<div>{Trophy}</div>
-					<button>N</button>
-					<button>...</button>
+					<HeaderButton onClick={this.onGoalClick}>{Trophy}</HeaderButton>
+					<HeaderButton>{Ringer}</HeaderButton>
+					<HeaderButton onClick={this.onSettingsClick}>{Settings}</HeaderButton>
 				</Buttons>
 			</HeaderContainer>
 		);
@@ -33,7 +48,7 @@ const mapStateToProps = (state: IAppState) => {
 	};
 };
 
-export default connect(mapStateToProps)(PopupApp);
+export default connect(mapStateToProps)(Header);
 
 const HeaderContainer = styled('div')`
     display: flex;
@@ -41,11 +56,16 @@ const HeaderContainer = styled('div')`
     justify-content: space-between;
     justify-items: space-between;
     align-items: start;  
-    height: 40px;
+	min-height: 40px;
+	max-height: 40px;
     width: 300px;
     margin-bottom: 5px;
 	background-color: ${p => p.theme.backgroundColor};
 	border-bottom: solid rgb(200, 200, 200) 1px;
+`;
+
+const HeaderButton = styled('div')`
+	margin: 0px 5px;
 `;
 
 const Buttons = styled('div')`

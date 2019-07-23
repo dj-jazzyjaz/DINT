@@ -9,6 +9,7 @@ import { ProductDisplay } from '../product/ProductDisplay';
 import { Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 import { countProductTowardsGoal } from '../../background/store/actions/goalActions';
 import { addToPurchaseHistory } from '../../background/store/actions/productActions';
+import { Equalizer } from '../../../../dist/assets/SVGIcons';
 
 interface INotificationProps {
     notification: INotification,
@@ -43,6 +44,7 @@ class Notification extends React.Component<INotificationProps> {
                 <Controls>
                     <ButtonGreen onClick={this.dontBuy}>Remove and Save</ButtonGreen>
                     <Button onClick={this.buy}>Buy</Button>
+                    <Button style={{padding: '10px 12px'}}>{Equalizer}</Button>
                 </Controls>
             </NotificationContainer>
         );
