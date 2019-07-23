@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import styled from 'styled-components';
 import { BoldDisplay } from '../styles/sharedElements';
-import { IAppState } from '../../background/store';
 import { connect } from 'react-redux';
 
 
@@ -26,7 +25,7 @@ class GoalProgress extends React.Component<ISettingsProps> {
     }
 }
 
-const mapStateToProps = (state: IAppState) => {
+const mapStateToProps = () => {
     return {
        
     } ;

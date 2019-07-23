@@ -24,9 +24,10 @@ const notification: Reducer<INotification, NotificationActions> = (state = initi
 			return initialState;
 
 		case 'NEWNOTIF':
+			alert("new notification " + JSON.stringify(payload));
 			return {
 				notificationType: payload && payload.notificationType ? payload.notificationType : 'NONE',
-				product: payload && payload.product
+				product: payload ? payload.product : {name : " ", cost: 42}
 			}
 		case 'TESTNOTIF':
 			return {
