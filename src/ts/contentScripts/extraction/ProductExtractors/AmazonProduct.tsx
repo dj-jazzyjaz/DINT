@@ -59,10 +59,12 @@ export class AmazonProduct extends IProduct {
     }
 
     protected setImage() {
+        debugger;
         var dom = document.querySelector("img#landingImage");
         if (dom == null)
             return null;
-        return dom.getAttribute('src');
+
+        return dom.getAttribute('data-old-hires');
     }
 
     protected setPrices() { return new AmazonPrice(); }
