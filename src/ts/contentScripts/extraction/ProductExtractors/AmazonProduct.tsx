@@ -9,6 +9,14 @@ class AmazonPrice implements IPrice{
         this.ourPrice = this.setOurPrice();
     }
 
+    getPrice() {
+        if (this.dealPrice == null && this.ourPrice == null)
+            return NaN;
+        if (this.dealPrice == null)
+            return this.ourPrice;
+        return this.dealPrice;
+    }
+
     getPrices() {
         return {
             dealPrice: this.dealPrice,

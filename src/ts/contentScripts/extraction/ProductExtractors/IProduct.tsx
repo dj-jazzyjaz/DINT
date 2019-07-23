@@ -20,6 +20,7 @@ export abstract class IProduct {
     protected abstract setCategories(): null | string[];
     protected abstract setPrices(): IPrice;
 
+    abstract getPrice(): Number;
     getName() {return this.name; }
     getDescription() { return this.description; }
     getCategory() { return this.category; }
