@@ -33,6 +33,7 @@ export class SimilarityChecker {
             }
             return false;
         }
+        return false; 
     }
 
     getCurrentProdData(type:string):any {
