@@ -3,8 +3,8 @@ export interface IPrice {
 }
 
 export abstract class IProduct {
-    private name: null | String;
-    private description: null | String;
+    private name: null | string;
+    private description: null | string;
     private prices: IPrice;
 
     constructor() {
@@ -13,8 +13,8 @@ export abstract class IProduct {
         this.prices = this.setPrices();
     }
 
-    abstract setName(): null | String;
-    abstract setDescription(): null | String;
+    abstract setName(): null | string;
+    abstract setDescription(): null | string;
     abstract setPrices(): IPrice;
 
     getName() {return this.name; }
