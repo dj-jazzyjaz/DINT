@@ -1,7 +1,5 @@
 import { Reducer} from 'redux';
 import { GoalActions } from '../actions/goalActions';
-// import { createSecureContext } from 'tls';
-//import { jsxEmptyExpression } from '@babel/types';
 
 export interface Goal {
 	goalAmount: number,
