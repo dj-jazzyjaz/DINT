@@ -2,7 +2,7 @@ import settings, { IAppSettings } from './reducers/settings';
 import { combineReducers } from "redux";
 import notification, {INotification} from './reducers/notification';
 import "redux";
-import product, { IProduct } from './reducers/product';
+import product, { RProduct } from './reducers/product';
 import goal, { IGoal } from './reducers/goal';
 import views, { IViews } from './reducers/views';
 
@@ -18,7 +18,7 @@ declare module "redux" {
 export interface IAppState {
 	settings: IAppSettings;
 	notification: INotification;
-	product: IProduct; 
+	product: RProduct; 
 	goal: IGoal;
 	views: IViews;
 }
