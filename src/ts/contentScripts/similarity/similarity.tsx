@@ -8,15 +8,13 @@ export class SimilarityChecker {
         // This parses through the order history arrary and sees 
         // if any keywords from the current product's data 
         // matches any of the items in the user's order history 
-        var currentProd: string = this.getCurrentProdData();
+        var currentProd: string = this.getCurrentProdData().toUpperCase();
         var orderHistory: string[] = this.getOrderHistory();
         for (var i = 0; i < orderHistory.length; i++) {
-            if (currentProd.indexOf(orderHistory[i]) > -1) {
-                console.log(orderHistory[i]);
+            if (currentProd.indexOf(orderHistory[i].toUpperCase()) > -1) {
                 return true;
             }    
         }
-        console.log("not similar");
         return false;
     }
 
