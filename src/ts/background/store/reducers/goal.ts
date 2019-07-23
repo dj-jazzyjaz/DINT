@@ -1,7 +1,6 @@
 import { Reducer} from 'redux';
 import { GoalActions } from '../actions/goalActions';
-import { createSecureContext } from 'tls';
-
+//import { jsxEmptyExpression } from '@babel/types';
 
 export interface Goal {
 	goalAmount: number,
@@ -17,12 +16,11 @@ export interface IGoal {
 }
 
 const initialState: IGoal = {
-	current: {goalAmount: 0, goalProgress: 0},
+	current: {goalAmount: 42, goalProgress: 32},
 	history: [],
 };
 
 const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
-	
 	const { payload } = action;
 	if (!state || !payload) return initialState
 
@@ -37,7 +35,6 @@ const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 				history: []
 			}
 		case 'NEWGOAL':
-			console.log('new goal');
 			return { ...state, 
 				current:  payload.goal};
 		case 'ADDTOHISTORY':

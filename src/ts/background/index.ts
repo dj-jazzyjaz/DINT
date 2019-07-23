@@ -5,12 +5,12 @@ import { configureApp } from './AppConfig';
 //import { persistStore } from "redux-persist";
 
 const preloadedState = loadState();
-const store: Store<IAppState> = createStore(reducers, preloadedState);
+export const store: Store<IAppState> = createStore(reducers, preloadedState);
 
 configureApp(store);
 
 wrapStore(store, {
-	portName: '3001' // Communication port between the background component and views such as browser tabs.
+	portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
 });
 
 //const persistor = persistStore(store);

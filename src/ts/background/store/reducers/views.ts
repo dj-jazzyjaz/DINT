@@ -1,7 +1,8 @@
 import { Reducer} from 'redux';
 import { ViewActions } from '../actions/viewsActions';
 
-export type popUpViewType = "SETGOAL" | "GOALPROGRESS" | "PRODUCTFILTERS"
+export type popUpViewType = "SETGOAL" | "GOALPROGRESS" | "PRODUCTFILTERS" | "SETTINGS";
+
 export interface IViews {
 	popUpView: popUpViewType,
 }
