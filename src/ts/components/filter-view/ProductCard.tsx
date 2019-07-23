@@ -30,7 +30,7 @@ export const ProductCard:React.FC<{
                 <ProductInfoContainer>
                     <ProductImage src={product.imgSrc} />
                     <ProductDetailsContainer>
-                        <ProductName>{product.productName}</ProductName>
+                        <ProductName>{product.name}</ProductName>
                         <ProductDetail>
                             <ProductDetailLabel>From:</ProductDetailLabel>
                             <ProductSource>{product.site}</ProductSource>
