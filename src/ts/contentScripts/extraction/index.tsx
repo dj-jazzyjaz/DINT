@@ -1,5 +1,5 @@
 import {Extractor} from "./Extractor"
-import { SimilarityChecker } from '../similarity/similarity';
+import { SimilarityChecker } from '../similarity/SimilarityChecker';
 import {Listener} from "./Listener/AmazonListener"
 
 // Extractor
