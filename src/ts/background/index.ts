@@ -1,17 +1,31 @@
 import { createStore } from "redux";
-import reducers, { IAppState, loadState } from "./store";
-import { wrapStore, Store } from "react-chrome-redux";
-import { configureApp } from './AppConfig';
-//import { persistStore } from "redux-persist";
+// import reducers, { IAppState, loadState } from "./store";
+import reducers from "./store";
+// import { wrapStore, Store } from "react-chrome-redux";
+import { wrapStore } from "react-chrome-redux";
+// import { configureApp } from './AppConfig';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
-const preloadedState = loadState();
-const store: Store<IAppState> = createStore(reducers, preloadedState);
+// const preloadedState = loadState();
+// const store: Store<IAppState> = createStore(reducers, preloadedState);
 
-configureApp(store);
+// configureApp(store);
+
+const persistConfig = {
+	key: 'root',
+	storage,
+  }
+  
+const persistedReducer = persistReducer(persistConfig, reducers)
+
+let store = createStore(persistedReducer)
+
+let persistor = persistStore(store)
 
 wrapStore(store, {
 	portName: '3001' // Communication port between the background component and views such as browser tabs.
 });
-
-//const persistor = persistStore(store);
+  
+export default { store, persistor };
 
