@@ -71,7 +71,6 @@ export class AmazonProduct extends IProduct {
                 }	
                 if (ASIN) {
                     location.replace("amazon.com/dp/" + ASIN);
-                    console.log(ASIN);
                 }	
                 else {   	
                     console.log("error");
