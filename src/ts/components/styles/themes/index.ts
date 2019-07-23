@@ -2,8 +2,10 @@ import { DefaultTheme } from 'styled-components';
 
 export type ThemeTypes = 'light' | 'dark';
 
+export const green = '#197278';
+
 export const lightTheme: DefaultTheme = {
-    backgroundColor: 'lightblue'
+    backgroundColor: 'white'
 }
 
 export const darkTheme: DefaultTheme = {

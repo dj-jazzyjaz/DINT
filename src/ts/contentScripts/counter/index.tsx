@@ -12,6 +12,8 @@ const store = new Store({
     portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
 })
 
+console.log('index in contentScript');
+
 store.ready().then(() => {
     ReactDOM.render(
         <Provider store={store}>

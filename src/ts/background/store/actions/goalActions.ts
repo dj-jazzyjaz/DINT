@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { Goal } from '../reducers/goal';
 import { Product } from '../reducers/product';
 
-export type GoalActionTypes = 'NEWGOAL' | 'ADDTOHISTORY' | 'INCREMENTGOAL';
+export type GoalActionTypes = 'NEWGOAL' | 'ADDTOHISTORY' | 'INCREMENTGOAL' | 'TESTGOAL';
 export interface GoalPayload {
     goal?: Goal,
     product?: Product
@@ -11,24 +11,35 @@ export interface GoalPayload {
 export type GoalActions = Action<GoalActionTypes, GoalPayload>
 
 
-export function newGoal(payload: Goal) {
+export function newGoal(goal: Goal) {
     return ({
         type: 'NEWGOAL',
-        payload: payload 
+        goal
     })
 }
 
-export function addToGoalHistory(payload: Goal) {
+export function addToGoalHistory(goal: Goal) {
     return ({
         type: 'ADDTOHISTORY',
-        payload: payload 
+        payload: {
+            goal
+        }
     })
 }
 
-export function countProductTowardsGoal(payload: Product) {
+export function countProductTowardsGoal(product: Product) {
     return ({
         type: 'INCREMENTGOAL',
-        payload: payload 
+        payload: {
+            product
+        }
+    })
+}
+
+export function testGoal() {
+    return ({
+        type: 'TESTGOAL',
+        payload: {}
     })
 }
 

@@ -5,7 +5,7 @@ import { Store } from 'react-chrome-redux';
 import PopupApp from './PopupApp';
 
 const store = new Store({
-    portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
+    portName: '3001' // Communication port between the background component and views such as browser tabs.
 })
 
 store.ready().then(() => {

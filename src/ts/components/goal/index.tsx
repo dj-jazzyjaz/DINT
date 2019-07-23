@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Store } from 'react-chrome-redux';
-import Notification from './Notification';
+import GoalProgress from './GoalProgress';
 
 import { createDomAnchor } from '../../scripts/dom';
 
@@ -15,7 +15,7 @@ const store = new Store({
 store.ready().then(() => {
     ReactDOM.render(
         <Provider store={store}>
-            <Notification/>
+            <GoalProgress/>
         </Provider>
         , document.getElementById('counter-root'))
 });

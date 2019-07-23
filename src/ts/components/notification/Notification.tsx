@@ -3,8 +3,10 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
-import { buy, dontBuy } from '../../background/store/actions/notificationActions';
+import { buy, dontBuy, testNotif } from '../../background/store/actions/notificationActions';
 import { INotification } from '../../background/store/reducers/notification';
+import { ProductDisplay } from '../product/ProductDisplay';
+import { Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 
 interface INotificationProps {
     notification: INotification,
@@ -12,22 +14,31 @@ interface INotificationProps {
 }
 
 class Notification extends React.Component<INotificationProps> {
+    componentWillMount (){
+        this.props.dispatch(testNotif());
+    }
+    
     buy = () => {
         this.props.dispatch(buy({}));
     };
+
     dontBuy = () => {
         this.props.dispatch(dontBuy({}));
     };
 
     render() {
         return (
-            <NotificationContainer >
+            <NotificationContainer>
                 <Display>
-                    Do you need this product? 
+                    Duplicate item detected
                 </Display>
+                {
+                    (this.props.notification.notificationType === 'SIMILAR') && this.props.notification.product && 
+                    <ProductDisplay product={this.props.notification.product}/>
+                }
                 <Controls>
-                    <Button onClick={this.dontBuy}>Don't Buy</Button>
-                    <Button onClick={this.buy}>Buy anyways</Button>
+                    <ButtonGreen onClick={this.dontBuy}>Remove and Save</ButtonGreen>
+                    <Button onClick={this.buy}>Buy</Button>
                 </Controls>
             </NotificationContainer>
         );
@@ -53,37 +64,3 @@ const NotificationContainer = styled('div')`
     background-color: ${p => p.theme.backgroundColor};
 `;
 
-const Display = styled('div')`
-    font-size: 48px;
-    justify-self: center;
-`;
-
-const Controls = styled('div')`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    min-width: 200px;
-`;
-
-// Thanks to: https://codepen.io/FelipeMarcos/pen/tfhEg?editors=1100
-const Button = styled('button')` 
-	display: inline-block;
-	position: relative;
-    padding: 10px 30px;
-	border: 1px solid transparent;
-	border-bottom: 4px solid rgba(0,0,0,0.21);
-	border-radius: 4px;
-    background: linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
-    
-    color: white;
-    font-size: 22px;
-	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
-    text-decoration: none;
-    cursor: pointer;
-    outline: none;
-    user-select: none;
-	
-    &:active {
-        background: #169499;
-    }
-`;
