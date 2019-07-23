@@ -35,6 +35,11 @@ export const ButtonGreen = styled('button')`
     }
 `;
 
+export const ButtonUnstyled = styled('button')`
+    background: transparent;
+    border: none;
+`;
+
 export const Controls = styled('div')`
     display: flex;
     flex-direction: row;

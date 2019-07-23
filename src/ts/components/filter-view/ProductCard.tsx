@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { green } from '../styles/themes';
 import { Product } from '../../background/store/reducers';
 import { CheckboxChecked, CheckboxUnchecked } from '../../../assets/SVGIcons';
+import { ButtonUnstyled } from '../styles/sharedElements';
 
 export const ProductCard:React.FC<{
     product: Product
@@ -19,11 +20,11 @@ export const ProductCard:React.FC<{
         <React.Fragment>
             <ProductCardContainer>
                 <CheckboxContainer>
-                    <CheckboxButton onClick={toggleChecked}>
+                    <ButtonUnstyled onClick={toggleChecked}>
                         <CheckboxIconContainer>
                             {checked ? CheckboxChecked : CheckboxUnchecked}
                         </CheckboxIconContainer>
-                    </CheckboxButton>
+                    </ButtonUnstyled>
                     <CheckboxMessage>Do not notify me for repurchase</CheckboxMessage>
                 </CheckboxContainer>
                 <ProductInfoContainer>
@@ -56,11 +57,6 @@ const CheckboxContainer = styled('div')`
     display: inline-flex;
 `;
 
-const CheckboxButton = styled('button')`
-    background: transparent;
-    border: none;
-`;
-
 const CheckboxIconContainer = styled('div')`
     display: flex;
     border: 2px solid ${green};
@@ -85,12 +81,12 @@ const ProductDetailsContainer = styled('div')`
 
 const ProductDetail = styled('div')`
     display: inline-block;
+    padding-top: 6px;
 `;
 
 const ProductDetailLabel = styled('span')`
     font-size: 12px;
     font-weight: bold;
-    padding-top: 6px;
     padding-right: 4px;
 `;
 
