@@ -5,7 +5,7 @@ import { ProductCard } from './ProductCard';
 
 export const FilterView:React.FC<{}> = ({}) => {
     const productCards = React.useMemo(
-        () => MockProducts.map(product => <ProductCard product={product} />),
+        () => MockProducts.map((product, key) => <ProductCard key={key} product={product} />),
         [MockProducts]
     );
 

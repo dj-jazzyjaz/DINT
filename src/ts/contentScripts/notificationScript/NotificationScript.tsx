@@ -35,6 +35,7 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     componentWillMount (){
         debugger;
+        alert("Jasmine is cute");
         chrome.runtime.onMessage.addListener(this.onMessageRecieve);
         this.props.dispatch(testNotif());
     }

@@ -4,8 +4,9 @@ import { Dispatch } from 'redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
 import { ThemeTypes } from '../styles/themes';
-import { Trophy, Ringer, Settings } from '../../../assets/SVGIcons';
 import { changeView } from '../../background/store/actions/viewsActions';
+import { Trophy, Ringer } from '../styles/SVGIcons';
+import Settings from './Settings';
 
 interface IHeader {
 	theme: ThemeTypes;
