@@ -5,7 +5,7 @@ import { Product } from './product';
 export type NotificationType = 'SIMILAR' | 'UNSUSTAINABLE' | 'NONE'
 
 export interface INotification {
-	notificationType?: NotificationType,
+	notificationType: NotificationType,
 	product?: Product
 }
 
@@ -25,7 +25,7 @@ const notification: Reducer<INotification, NotificationActions> = (state = initi
 
 		case 'NEWNOTIF':
 			return {
-				notificationType: payload ? payload.notificationType : 'NONE',
+				notificationType: payload && payload.notificationType ? payload.notificationType : 'NONE',
 				product: payload && payload.product
 			}
 		case 'TESTNOTIF':
