@@ -12,3 +12,5 @@ const autoSaveAppState = (store: Store<IAppState>) => {
 export const configureApp = (store: Store<IAppState>) => {
 	autoSaveAppState(store);
 }
+
+export const devMode = true;

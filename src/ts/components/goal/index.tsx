@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Store } from 'react-chrome-redux';
-import CounterApp from './CounterApp';
+import GoalProgress from './GoalProgress';
 
 import { createDomAnchor } from '../../scripts/dom';
 
@@ -12,12 +12,10 @@ const store = new Store({
     portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
 })
 
-console.log('index in contentScript');
-
 store.ready().then(() => {
     ReactDOM.render(
         <Provider store={store}>
-            <CounterApp />
+            <GoalProgress/>
         </Provider>
         , document.getElementById('counter-root'))
 });

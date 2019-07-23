@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { IAppState } from '../../background/store';
-import Counter from '../counter/Counter';
 import GlobalStyle from '../../components/styles/GlobalStyle';
 import { themes, ThemeTypes } from '../../components/styles/themes';
+import GoalProgress from '../goal/GoalProgress';
+import Header from './Header';
+import SetGoal from '../goal/SetGoal';
+import { popUpViewType } from '../../background/store/reducers/views';
 
 interface IPopupApp {
 	theme: ThemeTypes;
 	dispatch: Dispatch;
+	view: popUpViewType;
 }
 
 class PopupApp extends React.Component<IPopupApp> {
@@ -20,7 +24,9 @@ class PopupApp extends React.Component<IPopupApp> {
 				<React.Fragment>
 					<GlobalStyle />
 					<PopupAppContainer>
-						<Counter />
+						<Header />
+						{(this.props.view === "GOALPROGRESS") && <GoalProgress />}
+						{(this.props.view === "SETGOAL") && <SetGoal/>}
 					</PopupAppContainer>
 				</React.Fragment>
 			</ThemeProvider>
@@ -30,7 +36,8 @@ class PopupApp extends React.Component<IPopupApp> {
 
 const mapStateToProps = (state: IAppState) => {
 	return {
-		theme: state.settings.theme
+		theme: state.settings.theme,
+		view: state.views.popUpView
 	};
 };
 
@@ -38,13 +45,12 @@ export default connect(mapStateToProps)(PopupApp);
 
 const PopupAppContainer = styled('div')`
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;  
-    height: 200px;
+    flex-direction: column;
+    justify-content: start;
+    justify-items: start;
+    align-items: start;  
+    height: 250px;
     width: 300px;
     margin: 10px;
     background-color: ${p => p.theme.backgroundColor};
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
