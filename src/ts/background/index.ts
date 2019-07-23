@@ -5,7 +5,7 @@ import { configureApp } from './AppConfig';
 //import { persistStore } from "redux-persist";
 
 const preloadedState = loadState();
-const store: Store<IAppState> = createStore(reducers, preloadedState);
+export const store: Store<IAppState> = createStore(reducers, preloadedState);
 
 configureApp(store);
 

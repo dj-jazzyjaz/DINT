@@ -35,7 +35,6 @@ export function dontBuy(payload: NotificationPayload) {
         payload: payload
     })
 }
-
 export function testNotif(){
     return ({
         type: 'TESTNOTIF'
