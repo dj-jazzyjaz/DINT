@@ -1,4 +1,4 @@
 import {Extractor} from "./extractionFactory"
 
 var extractor = new Extractor();
-extractor.details(false);
+extractor.details(true);

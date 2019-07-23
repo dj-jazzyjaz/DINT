@@ -3,9 +3,9 @@ export abstract class IExtractor {
     isWebsite() {
         return location.href.startsWith(this.website);
     }
-    protected abstract isProductPage(): boolean;
-    protected abstract isCartPage(): boolean;
-    protected abstract isCheckoutPage(): boolean;
+    abstract isProductPage(): boolean;
+    abstract isCartPage(): boolean;
+    abstract isCheckoutPage(): boolean;
     getPage(debug=false) {
         var results = [
             this.isProductPage(),
@@ -22,15 +22,15 @@ export abstract class IExtractor {
 
 export class Dummy extends IExtractor {
     protected website = "dummy"
-    protected isProductPage() {
+    isProductPage() {
        return  false;
     }
 
-    protected isCartPage() {
+    isCartPage() {
         return false;
     }
 
-    protected isCheckoutPage() {
+    isCheckoutPage() {
         return false;
     }
 
@@ -42,19 +42,19 @@ export class Dummy extends IExtractor {
 export class Amazon extends IExtractor{
     protected website = "https://www.amazon.com/"
     
-    protected isProductPage() {
+    isProductPage() {
         if (document.getElementById('add-to-cart-button') != null)
             return true;
         return  false;
     }
 
-    protected isCartPage() {
+    isCartPage() {
         if (location.href.includes("/cart/"))
             return true;
         return false;
     }
 
-    protected isCheckoutPage() {
+    isCheckoutPage() {
         var headings = document.getElementsByTagName("h1");
         if (headings.length != 1)
             return false;
