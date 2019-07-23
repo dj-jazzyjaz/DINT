@@ -20,25 +20,16 @@ export class SimilarityChecker {
             if (purchasedProdCategory != null) {
                 for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
                     for (var j = currentProdCategory.length - 1; j >= 0; j--) {
+                        // The closer to length the number that the match is found at, the more similar
+                        // the closer to 0, the less similar they could be 
                         if (currentProdCategory[j] == purchasedProdCategory[i]){
+                            console.log("positions " + i + " " + j);
                             console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
                             return true;
                         } 
                     }
                 }
-            }
-
-            
-
-
-            console.log("no category match found");
-            // Title checking 
-            var currentProd: string = this.getCurrentProdData("Name").toUpperCase();
-            var orderHistory: string[] = this.getOrderHistory("Name");
-            for (var i = 0; i < orderHistory.length; i++) {
-                if (currentProd.indexOf(orderHistory[i].toUpperCase()) > -1) {
-                    return true;
-                }    
+                return false; 
             }
             return false;
         }
