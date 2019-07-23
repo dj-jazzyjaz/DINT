@@ -9,6 +9,7 @@ import GoalProgress from '../goal/GoalProgress';
 import Header from './Header';
 import SetGoal from '../goal/SetGoal';
 import { popUpViewType } from '../../background/store/reducers/views';
+import { FilterView } from '../filter-view';
 
 interface IPopupApp {
 	theme: ThemeTypes;
@@ -27,6 +28,7 @@ class PopupApp extends React.Component<IPopupApp> {
 						<Header />
 						{(this.props.view === "GOALPROGRESS") && <GoalProgress />}
 						{(this.props.view === "SETGOAL") && <SetGoal/>}
+						{(this.props.view === "PRODUCTFILTERS") && <FilterView />}
 					</PopupAppContainer>
 				</React.Fragment>
 			</ThemeProvider>
