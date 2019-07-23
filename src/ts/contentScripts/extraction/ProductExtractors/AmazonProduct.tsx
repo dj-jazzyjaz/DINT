@@ -34,10 +34,10 @@ class AmazonPrice implements IPrice{
 export class AmazonProduct extends IProduct {
     constructor() { super(); }
 
-    setName() { 
+    protected setName() { 
         return document.getElementById('productTitle')!.textContent!.trim();
     }
-    setDescription() { 
+    protected setDescription() { 
         var dom = document.getElementById('feature-bullets')!.getElementsByTagName('li')
         // THIS IS UGLY
         for (var i = 0; i < 3; i++)
@@ -47,5 +47,12 @@ export class AmazonProduct extends IProduct {
             description += dom[i].textContent!.trim() + " ";
         return description.trim();
     }
-    setPrices() { return new AmazonPrice(); }
+    protected setCategories() {
+        var doms = document.getElementById('wayfinding-breadcrumbs_container')!.querySelectorAll('span.a-list-item:not(.a-color-tertiary)');
+        var result: string[] = [];
+        for (var i=0; i<doms.length; i++)
+            result.push(doms[i].textContent!.trim());
+        return result;
+    }
+    protected setPrices() { return new AmazonPrice(); }
 }
