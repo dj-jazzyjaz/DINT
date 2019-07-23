@@ -5,22 +5,29 @@ import styled, { ThemeProvider } from 'styled-components';
 import { IAppState } from '../../background/store';
 import Notification from '../../components/notification/Notification';
 import { themes, ThemeTypes } from '../../components/styles/themes';
+import { INotification } from '../../background/store/reducers/notification';
+import { testNotif } from '../../background/store/actions/notificationActions';
 
 
-interface ICounterApp {
-    theme: ThemeTypes;
+interface INotificationScript {
+    theme: ThemeTypes,
     dispatch: Dispatch;
+    notification: INotification;
 }
 
-class CounterApp extends React.Component<ICounterApp> {
-
+class NotificationScript extends React.Component<INotificationScript> {
+    componentWillMount (){
+        this.props.dispatch(testNotif());
+    }
+    
     render() {
         return (
             <ThemeProvider theme={themes[this.props.theme]}>
                 <React.Fragment>
-                    <CounterAppContainer >
-                        <Notification />
-                    </CounterAppContainer>
+                    <Container >
+                        {this.props.notification.notificationType != 'NONE' && 
+                        <Notification /> }
+                    </Container>
                 </React.Fragment>
             </ThemeProvider>
         );
@@ -29,13 +36,14 @@ class CounterApp extends React.Component<ICounterApp> {
 
 const mapStateToProps = (state: IAppState) => {
     return {
-        theme: state.settings.theme
+        theme: state.settings.theme,
+        notification: state.notification
     };
 };
 
-export default connect(mapStateToProps)(CounterApp);
+export default connect(mapStateToProps)(NotificationScript);
 
-const CounterAppContainer = styled('div')`
+const Container = styled('div')`
     position: fixed;
     z-index: 9;
     bottom: 0;
