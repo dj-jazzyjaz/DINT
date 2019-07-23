@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { green } from '../styles/themes';
 import { Product } from '../../background/store/reducers';
-import { CheckboxChecked, CheckboxUnchecked } from '../styles/SVGIcons';
+import { CheckboxChecked, CheckboxUnchecked } from '../../../assets/SVGIcons';
 import { ButtonUnstyled } from '../styles/sharedElements';
 
 export const ProductCard:React.FC<{
@@ -30,7 +30,7 @@ export const ProductCard:React.FC<{
                 <ProductInfoContainer>
                     <ProductImage src={product.imgSrc} />
                     <ProductDetailsContainer>
-                        <ProductName>{product.name}</ProductName>
+                        <ProductName>{product.productName}</ProductName>
                         <ProductDetail>
                             <ProductDetailLabel>From:</ProductDetailLabel>
                             <ProductSource>{product.site}</ProductSource>

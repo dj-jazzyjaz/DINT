@@ -11,7 +11,7 @@ export class ProductDisplay extends React.Component<ProductDisplayProps> {
             <ProductContainer>
                 <img src={this.props.product.imgSrc} width="60px" height="60px"/>
                 <ProductInfo>
-                    <ProductName>{this.props.product.name}</ProductName>
+                    <ProductName>{this.props.product.productName}</ProductName>
                     <ProductCost>${this.props.product.cost}</ProductCost>
                     <PurchaseDate>{this.props.product.datePurchased ? "Purchased on 7/22/2019" : ""}</PurchaseDate>
                 </ProductInfo>

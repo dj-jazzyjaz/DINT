@@ -8,7 +8,7 @@ export interface IViews {
 }
 
 const initialState: IViews = {
-	popUpView: "SETGOAL"//"PRODUCTFILTERS"
+	popUpView: "SETGOAL"
 };
 
 const popUpView: Reducer<IViews, ViewActions> = (state = initialState, action) => {

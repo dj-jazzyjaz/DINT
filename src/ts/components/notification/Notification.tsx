@@ -9,7 +9,7 @@ import { ProductDisplay } from '../product/ProductDisplay';
 import { Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 import { countProductTowardsGoal } from '../../background/store/actions/goalActions';
 import { addToPurchaseHistory } from '../../background/store/actions/productActions';
-import { Equalizer } from '../styles/SVGIcons';
+import { Equalizer } from '../../../../dist/assets/SVGIcons';
 
 interface INotificationProps {
     notification: INotification,
