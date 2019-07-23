@@ -17,7 +17,7 @@ export class SimilarityChecker {
             var currentProdCategory: string = this.getCurrentProdData("Category");
             var purchasedProdCategory = purchasedProd.getCategory(); 
             //var smallestCategory = currentProdCategory[currentProdCategory.length-1];
-            if (purchasedProdCategory != null) {
+            if (purchasedProdCategory != null && currentProdCategory != undefined) {
                 for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
                     for (var j = currentProdCategory.length - 1; j >= 0; j--) {
                         // The closer to length the number that the match is found at, the more similar
