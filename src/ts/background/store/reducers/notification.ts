@@ -32,7 +32,7 @@ const notification: Reducer<INotification, NotificationActions> = (state = initi
 			return {
 				notificationType: 'SIMILAR',
 				product: {
-					productName: 'Mug',
+					name: 'Mug',
 					cost: 10,
 					datePurchased: new Date(2019, 7, 22),
 					imgSrc: "https://thingsremembered.scene7.com/is/image/ThingsRemembered/000617859?$184x184$"

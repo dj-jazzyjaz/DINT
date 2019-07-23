@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { IAppState } from '../../background/store';
 import { BoldDisplay } from '../styles/sharedElements';
+import { IAppState } from '../../background/store';
+import { connect } from 'react-redux';
 
 
 interface ISettingsProps {
@@ -33,6 +33,7 @@ const mapStateToProps = (state: IAppState) => {
 };
 
 export default connect(mapStateToProps)(GoalProgress);
+
 
 const GoalContainer = styled('div')`
     display: flex;
