@@ -77,7 +77,7 @@ if (nodeEnv === 'watch') {
             background: 'background',
             options: 'options',
             popup: 'popup',
-            contentScript: ['counter'],
+            contentScript: ['notificationScript'],
         }
     })
     );

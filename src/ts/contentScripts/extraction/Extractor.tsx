@@ -26,7 +26,6 @@ export class Extractor {
     }
 
     private setProduct() {
-        debugger;
         if (this.extractor.getPageType() != "ProductPage")
             return null;
         switch(this.extractor.getWebsite()) {

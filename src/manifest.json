@@ -38,7 +38,7 @@
     },
     "content_scripts": [
         {
-            "js": ["extraction.js"],
+            "js": ["extraction.js", "notificationScript.js"],
             "matches": ["https://www.amazon.com/*"]
         }
     ]
