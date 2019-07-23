@@ -8,7 +8,7 @@ import { themes, ThemeTypes } from '../../components/styles/themes';
 import { INotification } from '../../background/store/reducers/notification';
 import { testNotif, newNotif } from '../../background/store/actions/notificationActions';
 import { Extractor } from '../extraction/Extractor';
-import { SimilarityChecker } from '../similarity/similarity';
+import { Product } from '../../background/store/reducers';
 
 
 interface INotificationScript {
@@ -19,14 +19,12 @@ interface INotificationScript {
 
 class NotificationScript extends React.Component<INotificationScript> {
     private extractor: Extractor;
-    private similarityChecker: SimilarityChecker;
     constructor (props: INotificationScript) {
         super(props);
         this.onMessageRecieve = this.onMessageRecieve.bind(this);
         chrome.runtime.onMessage.addListener(this.onMessageRecieve);
         debugger;
         this.extractor = new Extractor();
-        this.similarityChecker = new SimilarityChecker();
     }
     onMessageRecieve(message: any, _sender: any, _response: any) {
         debugger;
@@ -34,19 +32,26 @@ class NotificationScript extends React.Component<INotificationScript> {
     }
 
     componentWillMount (){
-        debugger;
-        chrome.runtime.onMessage.addListener(this.onMessageRecieve);
         this.props.dispatch(testNotif());
+        let extractorProduct = this.extractor.getProduct();
+        if (extractorProduct === null) {
+            return;
+        } else {
+            let name = extractorProduct.getName();
+            let description = extractorProduct.getDescription();
+            let product: Product = {
+                name: name ? name : "",
+                cost: 0,
+                description: description ? description : "",
+            }
+            alert('Similar product ' + JSON.stringify(product));
+            this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
+        }     
+        debugger;
     }
 
     componentDidMount () {
-        if (this.extractor.getProduct()) {
-            alert('recieved product ');
-            this.props.dispatch(newNotif({
-                notificationType: 'SIMILAR',
-                product: {name: "drill", cost: 20},
-            }));
-        }
+        
     }
     
     render() {
