@@ -1,6 +1,5 @@
 import settings, { IAppSettings } from './reducers/settings';
 import { combineReducers } from "redux";
-import counter, { ICounter } from './reducers/counter';
 import notification, {INotification} from './reducers/notification';
 import "redux";
 import product, { IProduct } from './reducers/product';
@@ -17,7 +16,6 @@ declare module "redux" {
 }
 
 export interface IAppState {
-	counter: ICounter;
 	settings: IAppSettings;
 	notification: INotification;
 	product: IProduct; 
@@ -50,7 +48,6 @@ export const saveState = (appstate: IAppState,
 };
 
 const reducers = combineReducers<IAppState>({
-	counter,
 	settings,
 	notification,
 	product,

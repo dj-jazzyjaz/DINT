@@ -24,7 +24,7 @@ let store = createStore(persistedReducer)
 let persistor = persistStore(store)
 
 wrapStore(store, {
-	portName: '3001' // Communication port between the background component and views such as browser tabs.
+	portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
 });
   
 export default { store, persistor };

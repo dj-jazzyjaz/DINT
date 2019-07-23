@@ -7,8 +7,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import storage from '../../background/index';
 
 const store = new Store({
+<<<<<<< HEAD
     portName: '3001' // Communication port between the background component and views such as browser tabs.
 });
+=======
+    portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
+})
+>>>>>>> generalUI
 
 store.ready().then(() => {
     ReactDOM.render(
