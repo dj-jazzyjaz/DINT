@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { IAppState } from '../../background/store';
 import { buy, dontBuy, testNotif } from '../../background/store/actions/notificationActions';
 import { INotification } from '../../background/store/reducers/notification';
-import { green } from '../styles/themes';
 import { ProductDisplay } from '../product/ProductDisplay';
+import { Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 
 interface INotificationProps {
     notification: INotification,
@@ -64,49 +64,3 @@ const NotificationContainer = styled('div')`
     background-color: ${p => p.theme.backgroundColor};
 `;
 
-const Display = styled('div')`
-    font-size: 16px;
-    justify-self: left;
-`;
-
-const Controls = styled('div')`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    min-width: 300px;
-`;
-
-const ButtonGreen = styled('button')` 
-	display: inline-block;
-	position: relative;
-    padding: 10px 30px;
-	border: 1px solid ${green};
-    background: ${green}
-    
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    user-select: none;
-    
-    font-color: white
-    &:active {
-        background: #169499;
-    }
-`;
-
-const Button = styled('button')` 
-display: inline-block;
-position: relative;
-padding: 10px 30px;
-border: 1px solid ${green};
-background-color: white
-
-font-size: 14px;
-color: ${green};
-cursor: pointer;
-user-select: none;
-
-&:active {
-    background: #169499;
-}
-`;
