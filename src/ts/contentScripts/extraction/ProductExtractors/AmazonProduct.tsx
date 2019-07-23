@@ -40,11 +40,14 @@ export class AmazonProduct extends IProduct {
     protected setDescription() { 
         var dom = document.getElementById('feature-bullets')!.getElementsByTagName('li')
         // THIS IS UGLY
-        for (var i = 0; i < 3; i++)
-            dom[0].remove()
+        if (dom.length > 3) {
+            for (var i = 0; i < 3; i++)
+                dom[0].remove()
+        }
         var description = ""
         for (var i = 0; i < dom.length; i++)
             description += dom[i].textContent!.trim() + " ";
+            
         return description.trim();
     }
     protected setCategories() {
@@ -54,5 +57,13 @@ export class AmazonProduct extends IProduct {
             result.push(doms[i].textContent!.trim());
         return result;
     }
+
+    protected setImage() {
+        var dom = document.querySelector("img#landingImage");
+        if (dom == null)
+            return null;
+        return dom.getAttribute('src');
+    }
+
     protected setPrices() { return new AmazonPrice(); }
 }

@@ -2,25 +2,26 @@ import { Reducer} from 'redux';
 import { ProductActions } from '../actions/productActions';
 
 export interface Product {
-	productName: string,
+	name: string,
 	cost: number,
+	site?: string,
 	sustInfo?: string,
-	desc?: string,
+	description?: string,
 	imgSrc?: string,
 	datePurchased?: Date,
 }
 
-export interface IProduct {
+export interface RProduct {
 	current: Product | null,
 	history: Product[]
 }
 
-const initialState: IProduct = {
+const initialState: RProduct = {
 	current: null,
 	history: [],
 };
 
-const product: Reducer<IProduct, ProductActions> = (state = initialState, action) => {
+const product: Reducer<RProduct, ProductActions> = (state = initialState, action) => {
 	const { payload } = action;
 	switch (action.type) {
 		case 'ADDTOHISTORY':
