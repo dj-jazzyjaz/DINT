@@ -38,7 +38,7 @@ export class WalmartAgent implements IAgent {
         parentDom.insertBefore(newButton, button);
 
         document.querySelector("div.prod-product-cta-add-to-cart")!.addEventListener('click', callback);
-        //button!.style.display = 'none'
+        button!.style.display = 'none'
         button.id = "addToCartNow"
         return true;
     }
@@ -51,6 +51,7 @@ export class WalmartAgent implements IAgent {
         if (nodes[0].children.length == 2) {
             nodes[0].firstElementChild!.remove()
             document.getElementById("addToCartNow")!.click();
+            document.getElementById("addToCartNow")!.style.display = ''
         }
     }
 
