@@ -1,7 +1,5 @@
 import { AmazonExtractor } from '../extraction/PageExtractors/AmazonExtractor';
 import { AmazonProduct } from '../extraction/ProductExtractors/AmazonProduct';
-import { PurchasedProduct } from './PurchasedProduct';
-
 
 export class SimilarityChecker {
 
@@ -9,8 +7,8 @@ export class SimilarityChecker {
         // This parses through the order history arrary and sees 
         // if any keywords from the current product's data 
         // matches any of the items in the user's order history 
-
-        var pageChecker = new AmazonExtractor();
+        return true;
+        /*var pageChecker = new AmazonExtractor();
         if (pageChecker.getPageType() == "ProductPage"){
             var purchasedProd = this.getOrderHistory();
             // Category checking
@@ -33,7 +31,7 @@ export class SimilarityChecker {
             }
             return false;
         }
-        return false; 
+        return false; */
     }
 
     getCurrentProdData(type:string):any {
@@ -54,9 +52,5 @@ export class SimilarityChecker {
             return "";
     }
 
-    getOrderHistory():PurchasedProduct {
-        // TODO: get PurchasedProducts from DB
-        var prod = new PurchasedProduct();
-        return prod;
-    }
+   
 }
