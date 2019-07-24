@@ -4,7 +4,7 @@ import { green } from './themes';
 export const Button = styled('button')` 
     display: inline-block;
     position: relative;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border: 1px solid ${green};
     background-color: white
 
@@ -21,7 +21,7 @@ export const Button = styled('button')`
 export const ButtonGreen = styled('button')` 
 	display: inline-block;
 	position: relative;
-    padding: 10px 30px;
+    padding: 10px 20px;
 	border: 1px solid ${green};
     background: ${green}
     color: white;
@@ -33,6 +33,11 @@ export const ButtonGreen = styled('button')`
     &:active {
         background: #169499;
     }
+`;
+
+export const ButtonUnstyled = styled('button')`
+    background: transparent;
+    border: none;
 `;
 
 export const Controls = styled('div')`

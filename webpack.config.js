@@ -30,6 +30,7 @@ module.exports = {
     module: {
         rules: [
             { test: /\.(js|ts|tsx)?$/, loader: "awesome-typescript-loader", exclude: /node_modules/ },
+            { test: /\.css$/i, use: ['style-loader', 'css-loader'],},
         ]
     },
     plugins: [
@@ -77,7 +78,7 @@ if (nodeEnv === 'watch') {
             background: 'background',
             options: 'options',
             popup: 'popup',
-            contentScript: ['counter'],
+            contentScript: ['notificationScript'],
         }
     })
     );

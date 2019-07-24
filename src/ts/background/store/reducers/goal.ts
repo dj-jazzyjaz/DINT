@@ -1,7 +1,5 @@
 import { Reducer} from 'redux';
 import { GoalActions } from '../actions/goalActions';
-import { createSecureContext } from 'tls';
-
 
 export interface Goal {
 	goalAmount: number,
@@ -17,15 +15,15 @@ export interface IGoal {
 }
 
 const initialState: IGoal = {
-	current: {goalAmount: 0, goalProgress: 0},
+	current: {goalAmount: 42, goalProgress: 32},
 	history: [],
 };
 
 const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
-	
 	const { payload } = action;
-	if (!state || !payload) return initialState
-
+	//alert('goal reduce '+ action.type + JSON.stringify(payload) + JSON.stringify(state));
+	if (!state) return initialState;
+	if (!payload) return state;
 	switch (action.type) {
 		case 'TESTGOAL':
 			return {
@@ -37,7 +35,6 @@ const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 				history: []
 			}
 		case 'NEWGOAL':
-			console.log('new goal');
 			return { ...state, 
 				current:  payload.goal};
 		case 'ADDTOHISTORY':
@@ -51,7 +48,7 @@ const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 						...state.current,
 						goalAmount: state.current ? state.current.goalAmount : 0,
 						goalProgress: payload.product && state.current ? 
-							state.current.goalProgress + payload.product.cost : NaN,
+							Math.round((state.current.goalProgress + payload.product.cost) * 100)/100 : NaN,
 					}
 				}
 		default:
