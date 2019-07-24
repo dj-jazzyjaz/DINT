@@ -4,6 +4,7 @@ import { IProduct } from './ProductExtractors/IProduct';
 import { AmazonProduct } from './ProductExtractors/AmazonProduct';
 import { AmazonAgent } from './IAgent/AmazonAgent';
 import {IAgent} from './IAgent/IAgent';
+import { WalmartExtractor } from './PageExtractors/WalmartExtractor';
 
 export class Extractor {
     private extractor: IExtractor;
@@ -21,6 +22,7 @@ export class Extractor {
     private setExtractor() {
         var extractorFactory = [
             new AmazonExtractor(),
+            new WalmartExtractor(),
         ]
         var extractors = extractorFactory.map(x => x.isWebsite())
         if (extractors.filter(x => x).length == 1)
