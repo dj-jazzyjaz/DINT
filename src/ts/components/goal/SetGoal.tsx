@@ -7,6 +7,7 @@ import { IGoal } from '../../background/store/reducers/Goal';
 import { BoldDisplay, Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 import { newGoal } from '../../background/store/actions/goalActions';
 import { changeView } from '../../background/store/actions/viewsActions';
+import { newNotif } from '../../background/store/actions';
 
 interface IGoalProps {
     goal: IGoal,
@@ -33,6 +34,7 @@ class SetGoal extends React.Component<IGoalProps, SetGoalState> {
         let value = this.state.goalValue;
         this.props.dispatch(newGoal({goalAmount: value, goalProgress: 0}));
         this.props.dispatch(changeView("GOALPROGRESS"));
+        this.props.dispatch(newNotif({notificationType: 'NONE'}))
     }
 
     onGoalInput (e: React.ChangeEvent<HTMLInputElement>) {

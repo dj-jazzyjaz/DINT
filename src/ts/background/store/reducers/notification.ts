@@ -2,7 +2,7 @@ import { Reducer} from 'redux';
 import { NotificationActions } from '../actions';
 import { Product } from './product';
 
-export type NotificationType = 'SIMILAR' | 'UNSUSTAINABLE' | 'NONE'
+export type NotificationType = 'SIMILAR' | 'UNSUSTAINABLE' | 'GOALMET' | 'NONE'
 
 export interface INotification {
 	notificationType: NotificationType,
@@ -27,7 +27,7 @@ const notification: Reducer<INotification, NotificationActions> = (state = initi
 			//alert("new notification " + JSON.stringify(payload));
 			return {
 				notificationType: payload && payload.notificationType ? payload.notificationType : 'NONE',
-				product: payload ? payload.product : {name : " ", cost: 42}
+				product: payload ? payload.product : undefined
 			}
 		case 'TESTNOTIF':
 			return {
