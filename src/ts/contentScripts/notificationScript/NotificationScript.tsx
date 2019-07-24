@@ -38,7 +38,7 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     addToCartCallback () {
         let extractorProduct = this.extractor.getProduct();
-        alert('add to cart callback');
+        //alert('add to cart callback');
         if (extractorProduct === null || extractorProduct === undefined) {
             alert('not defined');
             return;
@@ -50,9 +50,9 @@ class NotificationScript extends React.Component<INotificationScript> {
                 cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
             }
-            alert('Found product ' + JSON.stringify(product));
-            if(this.similarityChecker.isSimilar(product)) {
-                alert('Similar product ' + JSON.stringify(product));
+            //alert('Found product ' + JSON.stringify(product));
+            if(true || this.similarityChecker.isSimilar(product)) {
+                //alert('Similar product ' + JSON.stringify(product));
                 this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
             }
             else
@@ -66,7 +66,7 @@ class NotificationScript extends React.Component<INotificationScript> {
                 <React.Fragment>
                     <Container >
                         {this.props.notification.notificationType != 'NONE' && 
-                        <Notification /> }
+                        <Notification addToCartAction={this.extractor.addToCartAction}/> }
                     </Container>
                 </React.Fragment>
             </ThemeProvider>

@@ -13,11 +13,21 @@ import { Equalizer } from '../../../assets/SVGIcons';
 
 interface INotificationProps {
     notification: INotification,
-    dispatch: Dispatch;
+    dispatch: Dispatch,
+    addToCartAction: () => void
 }
 
 class Notification extends React.Component<INotificationProps> {
+    constructor(props: INotificationProps) {
+        super(props);
+
+        this.buy = this.buy.bind(this);
+        this.dontBuy = this.dontBuy.bind(this);
+    }
+
     buy = () => {
+        alert('buy');
+        this.props.addToCartAction();
         this.props.dispatch(buy({}));
         if (this.props.notification.product) {
             this.props.dispatch(addToPurchaseHistory(this.props.notification.product))

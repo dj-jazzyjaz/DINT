@@ -21,8 +21,9 @@ const initialState: IGoal = {
 
 const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 	const { payload } = action;
-	if (!state || !payload) return initialState
-
+	//alert('goal reduce '+ action.type + JSON.stringify(payload) + JSON.stringify(state));
+	if (!state) return initialState;
+	if (!payload) return state;
 	switch (action.type) {
 		case 'TESTGOAL':
 			return {
@@ -41,13 +42,14 @@ const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 				current: state.current,
 				history: payload.goal ? state.history.slice().concat(payload.goal) : state.history.slice() };
 		case 'INCREMENTGOAL':
+				alert("increment " + JSON.stringify(payload) + JSON.stringify(state) )
 				return {
 					...state, 
 					current: {
 						...state.current,
 						goalAmount: state.current ? state.current.goalAmount : 0,
 						goalProgress: payload.product && state.current ? 
-							state.current.goalProgress + payload.product.cost : NaN,
+							Math.round((state.current.goalProgress + payload.product.cost) * 100)/100 : NaN,
 					}
 				}
 		default:

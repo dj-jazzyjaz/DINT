@@ -43,6 +43,7 @@ export class AmazonAgent implements IAgent {
     }
 
     addToCartAction() {
+        alert('add to cart action');
         var button = this.getButton('add-to-cart-button');
         if (button == null)
             return;

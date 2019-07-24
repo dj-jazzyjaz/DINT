@@ -12,7 +12,7 @@ export const ProductCard:React.FC<{
         <React.Fragment>
             <ProductCardContainer>
                 <ProductInfoContainer>
-                    <ProductImage src={product.imgSrc} />
+                    {false && <ProductImage src={product.imgSrc} />}
                     <ProductDetailsContainer>
                         <ProductName>{product.name}</ProductName>
                         <ProductDetail>
