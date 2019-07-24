@@ -10,10 +10,12 @@ import { BoldDisplay, Display, Button } from '../styles/sharedElements';
 import { devMode } from '../../background/AppConfig';
 import { changeView } from '../../background/store/actions/viewsActions';
 import { green } from '../styles/themes';
+import '../../../assets/circular-progress-bar-styles.css';
 
 interface IGoalProps {
     goal: Goal,
-    dispatch: Dispatch;
+    dispatch: Dispatch,
+    inNotif?: boolean
 }
 
 class GoalProgress extends React.Component<IGoalProps> {
@@ -21,6 +23,7 @@ class GoalProgress extends React.Component<IGoalProps> {
         super(props);
 
         this.devSave = this.devSave.bind(this);
+        this.progressCircle = this.progressCircle.bind(this);
     }
 
     componentWillMount (){
@@ -45,31 +48,34 @@ class GoalProgress extends React.Component<IGoalProps> {
         
     }
 
-    render() {
+    progressCircle () {
         const progressPercent = (this.props.goal.goalProgress / this.props.goal.goalAmount) * 100;
+        return (<CircularProgressbar
+            value={progressPercent}
+            text={`$${this.props.goal.goalProgress}`}
+            styles={{
+                path: {
+                    stroke: green,
+                },
+                text: {
+                    fill: green,
+                },
+                background: {
+                    fill: green,
+                }
+            }}
+        />);
+    }
 
+    render() {
         return (
             <GoalContainer>
-                <CatContainer>
+                <CatContainer className={this.props.inNotif ? "inNotif" : ""}>
                     <BoldDisplay>
                         My savings
                     </BoldDisplay>
                     <ProgressBarContainer>
-                        <CircularProgressbar
-                            value={progressPercent}
-                            text={`$${this.props.goal.goalProgress}`}
-                            styles={{
-                                path: {
-                                    stroke: green,
-                                },
-                                text: {
-                                    fill: green,
-                                },
-                                background: {
-                                    fill: green,
-                                }
-                            }}
-                        />
+                       { this.progressCircle() }
                     </ProgressBarContainer>
                     <Display>
                         Current goal: {  this.props.goal.name ? this.props.goal.name : "Untitled"}
@@ -83,11 +89,13 @@ class GoalProgress extends React.Component<IGoalProps> {
                     devMode && <Button onClick={this.devSave}>+</Button>
                 }
                 </CatContainer>
-               <CatContainer>
+               { (!this.props.inNotif) &&
+                <CatContainer>
                     <BoldDisplay>
                         My Environmental Impact
                     </BoldDisplay>
                </CatContainer>
+               }
             </GoalContainer>
         );
     }

@@ -2,7 +2,7 @@ import { Reducer} from 'redux';
 import { NotificationActions } from '../actions';
 import { Product } from './product';
 
-export type NotificationType = 'SIMILAR' | 'UNSUSTAINABLE' | 'GOALMET' | 'NONE'
+export type NotificationType = 'SIMILAR' | 'UNSUSTAINABLE' | 'GOALMET' | 'GOALPROGRESS' | 'NONE'
 
 export interface INotification {
 	notificationType: NotificationType,
