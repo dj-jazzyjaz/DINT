@@ -68,7 +68,8 @@ class GoalProgress extends React.Component<IGoalProps> {
                     </IconContainer>
                 </IconOutline>
                 <EnvDescription>
-                    <EnvType>{envDesc.impactType} levels</EnvType>
+                    <EnvType>{envDesc.impactType} level</EnvType>
+                    <EnvAmount>{envDesc.amount}</EnvAmount>
                     {envDesc.description}
                 </EnvDescription>
             </CardContainer>
@@ -86,12 +87,11 @@ class GoalProgress extends React.Component<IGoalProps> {
                         Current goal: { (this.props.goal.description != undefined) ? this.props.goal.description : "Untitled"}
                     </Display>
                     <Display>
-                        Goal amount: { this.props.goal.goalAmount }
+                        Goal amount: ${ this.props.goal.goalAmount }
                     </Display>
-                    <Display>Goal Progress: {this.props.goal.goalProgress}</Display>
                     
                 {
-                    devMode && <Button onClick={this.devSave}>+</Button>
+                    devMode && <Button onClick={this.devSave}>Reset Goal</Button>
                 }
                 </CatContainer>
                { (!this.props.inNotif) &&
@@ -152,6 +152,11 @@ const IconContainer = styled('div')`
 const EnvType = styled('span')`
     padding-bottom: 3px;
     font-weight: bold;
+    color: black;
+`;
+
+const EnvAmount = styled('span')`
+    font-size: 14px;
     color: black;
 `;
 

@@ -6,7 +6,7 @@ import { IAppState } from '../../background/store';
 import Notification from '../../components/notification/Notification';
 import { themes, ThemeTypes } from '../../components/styles/themes';
 import { INotification } from '../../background/store/reducers/notification';
-import { newNotif, testNotif} from '../../background/store/actions/notificationActions';
+import { newNotif} from '../../background/store/actions/notificationActions';
 import { Extractor } from '../extraction/Extractor';
 import { Product, Goal } from '../../background/store/reducers';
 import { SimilarityChecker } from '../similarity/SimilarityChecker';
@@ -33,13 +33,6 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     componentWillMount (){
         this.extractor.setAddToCartCallback(this.addToCartCallback)      
-        this.props.dispatch(testNotif());
-    }
-
-    
-
-    componentDidUpdate() {
-        
     }
 
     addToCartCallback () {
@@ -47,23 +40,29 @@ class NotificationScript extends React.Component<INotificationScript> {
         //alert('add to cart callback');
         if (extractorProduct === null || extractorProduct === undefined) {
             //alert('not defined');
+            debugger;
             return;
         } else {
+            debugger;
             let name = extractorProduct.getName();
             let site = extractorProduct.getSite();
             let description = extractorProduct.getDescription();
+            let imageSrc = extractorProduct.getImage();
             let product: Product = {
                 name: name ? name : "",
                 site: site ? site: "",
                 category: extractorProduct.getCategory() || undefined,
                 cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
+                imgSrc: imageSrc ? imageSrc : "",
             }
 
+            debugger;
             if(this.similarityChecker.isSimilar(product) != undefined) {
                 //alert('Similar product ' + JSON.stringify(product));
+                debugger;
                 var matchedProd: Product | undefined = this.similarityChecker.isSimilar(product);
-                this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: matchedProd}))
+                this.props.dispatch(newNotif({notificationType: 'SIMILAR', productCurrent: product, productMatched: matchedProd}))
             }
             else {
                 alert("not doing similarity check");
@@ -102,8 +101,8 @@ export default connect(mapStateToProps)(NotificationScript);
 const Container = styled('div')`
     position: fixed;
     z-index: 50;
-    bottom: 0;
-    right: 0;
+    bottom: 10px;
+    right: 10px;
     background-color: ${p => p.theme.backgroundColor};
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;

@@ -1,8 +1,8 @@
 {
-    "name": "Web Extension Starter",
-    "author": "someone",
+    "name": "DINT",
+    "author": "DINT Hackathon Team",
     "version": "1.0.0",
-    "description": "A web browser extension starter - based on Typescript, React, Redux, Styled-Component, Webpack, and more. Runs on Chrome and Firefox.",
+    "description": "Save for sustainability",
     "icons": {
         "128": "assets/icon-128.png"
     },
@@ -28,7 +28,7 @@
         "persistent": true
     },
     "browser_action": {
-        "default_title": "Web Extension Starter",
+        "default_title": "DINT",
         "default_icon": "assets/icon-48.png",
         "default_popup": "popup.html"
     },

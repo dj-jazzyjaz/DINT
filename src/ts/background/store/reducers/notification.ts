@@ -6,7 +6,8 @@ export type NotificationType = 'SIMILAR' | 'UNSUSTAINABLE' | 'GOALMET' | 'GOALPR
 
 export interface INotification {
 	notificationType: NotificationType,
-	product?: Product
+	productCurrent?: Product,
+	productMatched?: Product
 }
 
 const initialState: INotification = {
@@ -27,12 +28,13 @@ const notification: Reducer<INotification, NotificationActions> = (state = initi
 			//alert("new notification " + JSON.stringify(payload));
 			return {
 				notificationType: payload && payload.notificationType ? payload.notificationType : 'NONE',
-				product: payload ? payload.product : undefined
+				productCurrent: payload ? payload.productCurrent : undefined,
+				productMatched: payload ? payload.productMatched : undefined,
 			}
 		case 'TESTNOTIF':
 			return {
 				notificationType: 'SIMILAR',
-				product: {
+				productCurrent: {
 					name: 'Mug',
 					cost: 10,
 					datePurchased: new Date(2019, 7, 22),
