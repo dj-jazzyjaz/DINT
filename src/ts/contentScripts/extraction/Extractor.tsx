@@ -69,7 +69,7 @@ export class Extractor {
         this.agent.setAddToCartButton(callback)
     }
 
-    // addToCartAction() {
-    //     this.agent.addToCartAction();
-    // }
+    addToCartAction() {
+        this.agent.addToCartAction();
+    }
 }
