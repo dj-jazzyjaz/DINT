@@ -4,17 +4,30 @@ import { green } from '../styles/themes';
 import { Product } from '../../background/store/reducers';
 import { CheckboxChecked, CheckboxUnchecked } from '../../../assets/SVGIcons';
 import { ButtonUnstyled } from '../styles/sharedElements';
+import { useDispatch } from 'react-redux';
+import { unfilterProduct } from '../../background/store/actions';
 
-export const ProductCard: React.FC<{
-    product: Product
-}> = ({
-    product
-}) => {
+export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+    const dispatch = useDispatch();
+
     const [checked, setChecked] = React.useState(true);
+    const timeoutRef = React.useRef<NodeJS.Timeout>();
+    const checkedRef = React.useRef(checked);
+
+    checkedRef.current = checked;
 
     const toggleChecked = React.useCallback(() => {
         setChecked(!checked);
-    }, [checked, setChecked]);
+
+        if (timeoutRef.current)
+            clearTimeout(timeoutRef.current);
+
+        timeoutRef.current = setTimeout(() => {
+            if (!checkedRef.current) {
+                dispatch(unfilterProduct(product));
+            }
+        }, 2000);
+    }, [checked, setChecked, dispatch, product])
 
     return (
         <React.Fragment>
@@ -37,7 +50,7 @@ export const ProductCard: React.FC<{
                         </ProductDetail>
                         <ProductDetail>
                             <ProductDetailLabel>Price:</ProductDetailLabel>
-                            <ProductPrice>{product.cost}</ProductPrice>
+                            <ProductPrice>${product.cost}</ProductPrice>
                         </ProductDetail>
                     </ProductDetailsContainer>
                 </ProductInfoContainer>

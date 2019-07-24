@@ -38,9 +38,11 @@ class NotificationScript extends React.Component<INotificationScript> {
             return;
         } else {
             let name = extractorProduct.getName();
+            let site = extractorProduct.getSite();
             let description = extractorProduct.getDescription();
             let product: Product = {
                 name: name ? name : "",
+                site: site ? site: "",
                 cost: 0,
                 description: description ? description : "",
             }

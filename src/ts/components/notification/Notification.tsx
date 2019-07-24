@@ -37,7 +37,6 @@ class Notification extends React.Component<INotificationProps> {
     addToFilter = () => {
         if (this.props.notification.product) {
             this.props.dispatch(filterProduct(this.props.notification.product))
-            alert(JSON.stringify(this.props.filter));
         }
     };
 
