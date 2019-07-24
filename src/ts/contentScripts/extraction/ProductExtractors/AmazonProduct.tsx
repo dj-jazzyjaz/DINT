@@ -45,6 +45,9 @@ export class AmazonProduct extends IProduct {
     protected setName() { 
         return document.getElementById('productTitle')!.textContent!.trim();
     }
+
+    protected setSite() { return 'Amazon'; }
+
     protected setDescription() { 
         var dom = document.getElementById('feature-bullets')!.getElementsByTagName('li')
         // THIS IS UGLY

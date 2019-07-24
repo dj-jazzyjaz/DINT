@@ -10,9 +10,12 @@ import { Display, Controls, Button, ButtonGreen } from '../styles/sharedElements
 import { countProductTowardsGoal } from '../../background/store/actions/goalActions';
 import { addToPurchaseHistory } from '../../background/store/actions/productActions';
 import { Equalizer } from '../../../assets/SVGIcons';
+import { filterProduct } from '../../background/store/actions';
+import { IFilter } from '../../background/store/reducers';
 
 interface INotificationProps {
     notification: INotification,
+    filter: IFilter,
     dispatch: Dispatch,
     addToCartAction: () => void
 }
@@ -41,6 +44,12 @@ class Notification extends React.Component<INotificationProps> {
         }
     };
 
+    addToFilter = () => {
+        if (this.props.notification.product) {
+            this.props.dispatch(filterProduct(this.props.notification.product))
+        }
+    };
+
     render() {
         return (
             <NotificationContainer>
@@ -54,7 +63,7 @@ class Notification extends React.Component<INotificationProps> {
                 <Controls>
                     <ButtonGreen onClick={this.dontBuy}>Remove and Save</ButtonGreen>
                     <Button onClick={this.buy}>Buy</Button>
-                    <Button style={{padding: '10px 12px'}}>{Equalizer}</Button>
+                    <Button onClick={this.addToFilter} style={{padding: '10px 12px'}}>{Equalizer}</Button>
                 </Controls>
             </NotificationContainer>
         );
@@ -64,7 +73,8 @@ class Notification extends React.Component<INotificationProps> {
 const mapStateToProps = (state: IAppState) => {
     return {
         notification: state.notification,
-    } ;
+        filter: state.filter,
+    };
 };
 
 export default connect(mapStateToProps)(Notification);

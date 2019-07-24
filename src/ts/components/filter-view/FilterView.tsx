@@ -1,12 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { MockProducts } from './mock/MockProducts';
 import { ProductCard } from './ProductCard';
+import { useSelector } from 'react-redux';
+import { IAppState } from '../../background/store';
 
-export const FilterView:React.FC<{}> = ({}) => {
+export const FilterView: React.FC<{}> = ({}) => {
+    const filter = useSelector((state: IAppState) => state.filter);
+
     const productCards = React.useMemo(
-        () => MockProducts.map(product => <ProductCard product={product} />),
-        [MockProducts]
+        () => filter.filtered.map(product => <ProductCard product={product} />),
+        [filter]
     );
 
     return (
