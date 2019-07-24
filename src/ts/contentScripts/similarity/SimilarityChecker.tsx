@@ -4,13 +4,13 @@ import { RProduct, Product } from '../../background/store/reducers';
 
 export class SimilarityChecker {
 
-    isSimilar(currentProduct: Product):Product {
+    isSimilar(currentProduct: Product):Product | undefined {
         // This parses through the order history arrary and sees 
         // if any keywords from the current product's data 
         // matches any of the items in the user's order history 
         var orderHistory = this.getOrderHistory().history;
         var currentProdCategory: string[];
-        var catIndex:Number, index:Number = -1;
+        var catIndex:Number = -1, index:Number = -1;
         
         // Category checking
        
