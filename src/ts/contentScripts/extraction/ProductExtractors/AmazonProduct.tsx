@@ -99,7 +99,6 @@ export class AmazonProduct extends IProduct {
         var dom = document.querySelector("img#landingImage");
         if (dom == null)
             return null;
-
         return dom.getAttribute('data-old-hires');
     }
 

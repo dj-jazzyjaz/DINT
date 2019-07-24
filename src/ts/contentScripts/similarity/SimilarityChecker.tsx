@@ -83,30 +83,35 @@ export class SimilarityChecker {
             cost: 10,
             category: ["Toys & Games ", "Dress Up",  "Pretend Play", "Masks"],
             site: "Amazon",
+            imgSrc: "https://dyn0.media.forbiddenplanet.com/products/ccc3d79aafb1f918a63d7b09fba9962431156a34.jpg.jpg"
         }
         product2 = {
             name: "JWSilk Extra Wide Silk Chiffon Scarf Floral Print",
             cost: 10,
             category: ["Clothing, Shoes & Jewelry", "Women", "Accessories", "Scarves & Wraps", "Fashion Scarves"],
             site: "Amazon",
+            imgSrc: "https://cdn.shopify.com/s/files/1/1486/9868/products/yangtze-store-extra-wide-silk-chiffon-shawl-wrap-scarf-blue-and-orange-floral-print-sch149-23109053456_grande.jpg?v=1519406176"
         }
         product3 = {
             name: "BRONAX Men's Stylish Graffiti Personality Sneakers",
             cost: 10,
             category: ["Clothing, Shoes & Jewelry", "Men",  "Shoes",  "Athletic", "Tennis & Racquet Sports"],
             site: "Amazon",
+            imgSrc: "https://images-na.ssl-images-amazon.com/images/I/811UUxiyrzL.jpg"
         }
         product4 = {
             name: "Made In The A.M.",
             cost: 10,
             category: ["CDs & Vinyl", "Alternative Rock", "British Alternative", "Britpop"],
             site: "Amazon",
+            imgSrc: "https://i.ytimg.com/vi/8bbI-SUN0XQ/hqdefault.jpg"
         }
         product5 = {
             name: "Hello Is It Tea You're Looking For Poster 11x14",
             cost: 10,
             category: ["Handmade Products", "Home & Kitchen", "Artwork", "Posters"],
             site: "Amazon",
+            imgSrc: "https://images-na.ssl-images-amazon.com/images/I/41ZulkjoURL._QL70_.jpg"
         }
 
         fakeHistory = {
