@@ -11,6 +11,8 @@ import { devMode } from '../../background/AppConfig';
 import { changeView } from '../../background/store/actions/viewsActions';
 import { green } from '../styles/themes';
 import '../../../assets/circular-progress-bar-styles.css';
+import { EnvDescs } from './mock/MockEnvDescs';
+import { Raindrop, Cloud } from '../../../assets/SVGIcons';
 
 interface IGoalProps {
     goal: Goal,
@@ -67,7 +69,21 @@ class GoalProgress extends React.Component<IGoalProps> {
         />);
     }
 
+
     render() {
+        const envCards = EnvDescs.map(envDesc => (
+            <CardContainer>
+                <IconOutline>
+                    <IconContainer>
+                        {envDesc.impactType === 'H2O' ? Raindrop : Cloud}
+                    </IconContainer>
+                </IconOutline>
+                <EnvDescription>
+                    <EnvType>{envDesc.impactType} levels</EnvType>
+                    {envDesc.description}
+                </EnvDescription>
+            </CardContainer>
+        ));
         return (
             <GoalContainer>
                 <CatContainer className={this.props.inNotif ? "inNotif" : ""}>
@@ -94,6 +110,7 @@ class GoalProgress extends React.Component<IGoalProps> {
                     <BoldDisplay>
                         My Environmental Impact
                     </BoldDisplay>
+                    {envCards}
                </CatContainer>
                }
             </GoalContainer>
@@ -104,7 +121,7 @@ class GoalProgress extends React.Component<IGoalProps> {
 const mapStateToProps = (state: IAppState) => {
     return {
         goal: state.goal.current ? state.goal.current : {goalAmount: -1, goalProgress: 0},
-    } ;
+    };
 };
 
 export default connect(mapStateToProps)(GoalProgress);
@@ -127,4 +144,34 @@ const GoalContainer = styled('div')`
 
 const CatContainer = styled('div')`
     margin: 10px;
+`;
+
+const CardContainer = styled('div')`
+    display: flex;
+    padding: 10px 0px;
+`;
+
+const IconOutline = styled('div')`
+    background: ${green};
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+`;
+
+const IconContainer = styled('div')`
+    padding: 0px 10px;
+`;
+
+const EnvType = styled('span')`
+    padding-bottom: 3px;
+    font-weight: bold;
+    color: black;
+`;
+
+const EnvDescription = styled('div')`
+    display: flex;
+    padding: 0px 10px;
+    flex-direction: column;
+    font-size: 11px;
+    color: gray;
 `;

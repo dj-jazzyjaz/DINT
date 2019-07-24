@@ -59,8 +59,8 @@ class NotificationScript extends React.Component<INotificationScript> {
                 cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
             }
-            //alert('Found product ' + JSON.stringify(product));
-            if(true || this.similarityChecker.isSimilar(product)) {
+
+            if(this.similarityChecker.isSimilar(product)) {
                 //alert('Similar product ' + JSON.stringify(product));
                 this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
             }
