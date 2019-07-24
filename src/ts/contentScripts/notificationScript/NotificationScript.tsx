@@ -49,7 +49,7 @@ class NotificationScript extends React.Component<INotificationScript> {
             let product: Product = {
                 name: name ? name : "",
                 site: site ? site: "",
-                category: extractorProduct.getCategory(),
+                category: extractorProduct.getCategory() || undefined,
                 cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
             }
