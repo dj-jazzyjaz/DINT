@@ -5,6 +5,7 @@ import "redux";
 import product, { RProduct } from './reducers/product';
 import goal, { IGoal } from './reducers/goal';
 import views, { IViews } from './reducers/views';
+import filter, { IFilter } from './reducers/filter';
 
 // Enhance the Action interface with the option of a payload. 
 // While still importing the Action interface from redux.
@@ -21,6 +22,7 @@ export interface IAppState {
 	product: RProduct; 
 	goal: IGoal;
 	views: IViews;
+	filter: IFilter,
 }
 
 export const loadState = ():IAppState | undefined => {
@@ -53,6 +55,7 @@ const reducers = combineReducers<IAppState>({
 	product,
 	goal,
 	views,
+	filter,
 });
 
 export default reducers;

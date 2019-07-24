@@ -5,9 +5,9 @@ import { Product } from '../../background/store/reducers';
 import { CheckboxChecked, CheckboxUnchecked } from '../../../assets/SVGIcons';
 import { ButtonUnstyled } from '../styles/sharedElements';
 
-export const ProductCard:React.FC<{
+export const ProductCard: React.FC<{
     product: Product
-}> =  ({
+}> = ({
     product
 }) => {
     const [checked, setChecked] = React.useState(true);

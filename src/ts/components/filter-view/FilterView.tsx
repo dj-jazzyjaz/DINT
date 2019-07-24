@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MockProducts } from './mock/MockProducts';
 import { ProductCard } from './ProductCard';
 
-export const FilterView:React.FC<{}> = ({}) => {
+export const FilterView: React.FC<{}> = ({}) => {
     const productCards = React.useMemo(
         () => MockProducts.map(product => <ProductCard product={product} />),
         [MockProducts]
