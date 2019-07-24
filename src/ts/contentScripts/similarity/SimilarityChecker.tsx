@@ -1,7 +1,6 @@
 import { AmazonExtractor } from '../extraction/PageExtractors/AmazonExtractor';
 import { AmazonProduct } from '../extraction/ProductExtractors/AmazonProduct';
-import { PurchasedProduct } from './PurchasedProduct';
-
+import { RProduct, Product } from '../../background/store/reducers';
 
 export class SimilarityChecker {
 
@@ -15,7 +14,7 @@ export class SimilarityChecker {
             var purchasedProd = this.getOrderHistory();
             // Category checking
             var currentProdCategory: string = this.getCurrentProdData("Category");
-            var purchasedProdCategory = purchasedProd.getCategory(); 
+            var purchasedProdCategory = ""; //purchasedProd.getCategory(); 
             //var smallestCategory = currentProdCategory[currentProdCategory.length-1];
             if (purchasedProdCategory != null) {
                 for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
@@ -54,9 +53,43 @@ export class SimilarityChecker {
             return "";
     }
 
-    getOrderHistory():PurchasedProduct {
+    getOrderHistory():RProduct {
         // TODO: get PurchasedProducts from DB
-        var prod = new PurchasedProduct();
-        return prod;
+        // Create fake history
+        var fakeHistory:RProduct; 
+        
+        var product1:Product, product2:Product, product3:Product, product4:Product, product5:Product;
+        product1 = {
+            name: "Jurassic World Chomp 'n Roar Mask Velociraptor \"blue\"",
+            cost: 10,
+            category: ["Toys & Games ", "Dress Up",  "Pretend Play", "Masks"],
+        }
+        product2 = {
+            name: "JWSilk Extra Wide Silk Chiffon Scarf Floral Print",
+            cost: 10,
+            category: ["Clothing, Shoes & Jewelry", "Women", "Accessories", "Scarves & Wraps", "Fashion Scarves"],
+        }
+        product3 = {
+            name: "BRONAX Men's Stylish Graffiti Personality Sneakers",
+            cost: 10,
+            category: ["Clothing, Shoes & Jewelry", "Men",  "Shoes",  "Athletic", "Tennis & Racquet Sports"],
+        }
+        product4 = {
+            name: "Made In The A.M.",
+            cost: 10,
+            category: ["CDs & Vinyl", "Alternative Rock", "British Alternative", "Britpop"],
+        }
+        product5 = {
+            name: "Hello Is It Tea You're Looking For Poster 11x14",
+            cost: 10,
+            category: ["Handmade Products", "Home & Kitchen", "Artwork", "Posters"],
+        }
+
+        fakeHistory = {
+            current: null,
+            history: [product1, product2, product3, product4, product5]
+        }
+
+        return fakeHistory;
     }
 }
