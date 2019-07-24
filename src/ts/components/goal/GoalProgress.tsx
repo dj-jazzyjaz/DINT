@@ -2,12 +2,14 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { CircularProgressbar } from 'react-circular-progressbar';
 import { IAppState } from '../../background/store';
 import { Goal } from '../../background/store/reducers/Goal';
 import { countProductTowardsGoal } from '../../background/store/actions/goalActions';
 import { BoldDisplay, Display, Button } from '../styles/sharedElements';
 import { devMode } from '../../background/AppConfig';
 import { changeView } from '../../background/store/actions/viewsActions';
+import { green } from '../styles/themes';
 
 interface IGoalProps {
     goal: Goal,
@@ -20,6 +22,7 @@ class GoalProgress extends React.Component<IGoalProps> {
 
         this.devSave = this.devSave.bind(this);
     }
+
     componentWillMount (){
         //this.props.dispatch(testGoal());
     }
@@ -37,12 +40,31 @@ class GoalProgress extends React.Component<IGoalProps> {
     }
 
     render() {
+        const progressPercent = (this.props.goal.goalProgress / this.props.goal.goalAmount) * 100;
+
         return (
             <GoalContainer>
                 <CatContainer>
                     <BoldDisplay>
                         My savings
                     </BoldDisplay>
+                    <ProgressBarContainer>
+                        <CircularProgressbar
+                            value={progressPercent}
+                            text={`$${this.props.goal.goalProgress}`}
+                            styles={{
+                                path: {
+                                    stroke: green,
+                                },
+                                text: {
+                                    fill: green,
+                                },
+                                background: {
+                                    fill: green,
+                                }
+                            }}
+                        />
+                    </ProgressBarContainer>
                     <Display>
                         Current goal: {  this.props.goal.name ? this.props.goal.name : "Untitled"}
                     </Display>
@@ -72,6 +94,11 @@ const mapStateToProps = (state: IAppState) => {
 };
 
 export default connect(mapStateToProps)(GoalProgress);
+
+const ProgressBarContainer = styled('div')`
+    display: flex;
+    padding: 50px;
+`;
 
 const GoalContainer = styled('div')`
     display: flex;
