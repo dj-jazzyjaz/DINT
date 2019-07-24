@@ -27,12 +27,14 @@ export class SimilarityChecker {
                             if (i >= j && i >= index) {
                                 index = i; 
                                 catIndex = m;
-                                console.log("positions " + i + " " + j);
-                                console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
+                                //console.log("positions " + i + " " + j);
+                                //console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
                             }
                             else if (j >= i && j >= index) {
                                 index = j; 
                                 catIndex = m;
+                                //console.log("positions " + i + " " + j);
+                                //console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
                             }
                         } 
                     }
@@ -48,7 +50,7 @@ export class SimilarityChecker {
 
     getMatchedItem(index:any):Product {
         var result:Product = this.getOrderHistory().history[index];
-        alert("matched with " + JSON.stringify(result));
+        //alert("matched with " + JSON.stringify(result));
         return result;
     }
 

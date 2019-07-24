@@ -81,7 +81,7 @@ class Notification extends React.Component<INotificationProps> {
                     (this.props.notification.notificationType === 'SIMILAR') && this.props.notification.product && 
                     <div>
                          <Display>
-                            Duplicate item detected
+                            Similar item detected
                         </Display>
                         <ProductDisplay product={this.props.notification.product}/>
                     </div>          
