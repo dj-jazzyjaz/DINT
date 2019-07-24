@@ -25,7 +25,7 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     constructor (props: INotificationScript) {
         super(props);
-        debugger;
+        //debugger;
         this.extractor = new Extractor();
         this.addToCartCallback = this.addToCartCallback.bind(this);
         this.similarityChecker = new SimilarityChecker();
@@ -41,7 +41,7 @@ class NotificationScript extends React.Component<INotificationScript> {
         if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
             //alert('recieve props');
             console.log('update props');
-            debugger;
+            //debugger;
             this.props.dispatch(newNotif({notificationType: "GOALMET"}))
         } 
     }
@@ -51,7 +51,7 @@ class NotificationScript extends React.Component<INotificationScript> {
         if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
            // alert('recieve props');
             console.log('update props');
-            debugger;
+            //debugger;
             //this.props.dispatch(newNotif({notificationType: "GOALMET"}))
         }
     }

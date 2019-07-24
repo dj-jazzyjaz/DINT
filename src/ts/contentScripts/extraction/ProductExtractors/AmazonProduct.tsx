@@ -70,7 +70,7 @@ export class AmazonProduct extends IProduct {
     }
 
     protected setImage() {
-        debugger;
+        //debugger;
         var dom = document.querySelector("img#landingImage");
         if (dom == null)
             return null;
