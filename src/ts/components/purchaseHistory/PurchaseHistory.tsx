@@ -33,8 +33,9 @@ const mapStateToProps = (state: IAppState) => {
 export default connect(mapStateToProps)(PurchaseHistory);
     
 const HeaderText = styled('span')`
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
 `;
 
 const PurchaseHistoryContainer = styled('div')`

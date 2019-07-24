@@ -5,7 +5,7 @@ import {Extractor} from "./Extractor"
 var extractor = new Extractor(false);
 extractor.getPage();
 extractor.getProduct();
-extractor.setAddToCartCallback(() => alert("it works!"));
+//extractor.setAddToCartCallback(() => alert("it works!"));
 
 // Similarity 
 /*var similarityChecker1 = new SimilarityChecker();
