@@ -68,4 +68,8 @@ export class Extractor {
     setAddToCartCallback(callback: () => void) {
         this.agent.setAddToCartButton(callback)
     }
+
+    addToCartAction() {
+        this.agent.addToCartAction();
+    }
 }
