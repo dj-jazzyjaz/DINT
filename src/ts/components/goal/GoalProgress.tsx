@@ -68,7 +68,8 @@ class GoalProgress extends React.Component<IGoalProps> {
                     </IconContainer>
                 </IconOutline>
                 <EnvDescription>
-                    <EnvType>{envDesc.impactType} levels</EnvType>
+                    <EnvType>{envDesc.impactType} level</EnvType>
+                    <EnvAmount>{envDesc.amount}</EnvAmount>
                     {envDesc.description}
                 </EnvDescription>
             </CardContainer>
@@ -151,6 +152,11 @@ const IconContainer = styled('div')`
 const EnvType = styled('span')`
     padding-bottom: 3px;
     font-weight: bold;
+    color: black;
+`;
+
+const EnvAmount = styled('span')`
+    font-size: 14px;
     color: black;
 `;
 
