@@ -70,7 +70,8 @@ class Notification extends React.Component<INotificationProps> {
 
     addToFilter = () => {
         if (this.props.notification.productCurrent) {
-            this.props.dispatch(filterProduct(this.props.notification.productCurrent))
+            this.props.dispatch(filterProduct(this.props.notification.productCurrent));
+            this.props.dispatch(newNotif({notificationType: 'NONE'}));
         }
     };
 
@@ -89,8 +90,8 @@ class Notification extends React.Component<INotificationProps> {
                 {
                     (this.props.notification.notificationType === 'SIMILAR') && 
                     (<Controls>
-                        <ButtonGreen onClick={this.dontBuy}>Remove and Save</ButtonGreen>
-                        <Button onClick={this.buy}>Buy</Button>
+                        <ButtonGreen onClick={this.dontBuy}>Save {this.props.notification.productCurrent ? "$"+this.props.notification.productCurrent.cost : ""}</ButtonGreen>
+                        <Button onClick={this.buy}>Spend {this.props.notification.productCurrent ? "$"+this.props.notification.productCurrent.cost : ""}</Button>
                         <Button onClick={this.addToFilter} style={{padding: '10px 12px'}}>{Equalizer}</Button>
                     </Controls>)
                 }
