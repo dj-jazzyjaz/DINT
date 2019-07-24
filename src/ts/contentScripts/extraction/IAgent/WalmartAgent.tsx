@@ -25,7 +25,6 @@ export class WalmartAgent implements IAgent {
     }
 
     setAddToCartButton(callback: () => void) {
-        debugger;
         var button: HTMLButtonElement | null = document.querySelector("button[data-tl-id=ProductPrimaryCTA-cta_add_to_cart_button]")
         if (button == null)
             return false;
@@ -44,7 +43,6 @@ export class WalmartAgent implements IAgent {
     }
 
     addToCartAction() {
-        debugger;
         var nodes = document.querySelectorAll("div.prod-product-cta-add-to-cart")
         if (nodes.length != 1)
             return;
