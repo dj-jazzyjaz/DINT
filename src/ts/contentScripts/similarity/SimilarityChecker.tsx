@@ -2,14 +2,15 @@ import { AmazonExtractor } from '../extraction/PageExtractors/AmazonExtractor';
 import { AmazonProduct } from '../extraction/ProductExtractors/AmazonProduct';
 import { RProduct, Product } from '../../background/store/reducers';
 
+
 export class SimilarityChecker {
 
     isSimilar():boolean {
         // This parses through the order history arrary and sees 
         // if any keywords from the current product's data 
         // matches any of the items in the user's order history 
-
-        var pageChecker = new AmazonExtractor();
+        return true;
+        /*var pageChecker = new AmazonExtractor();
         if (pageChecker.getPageType() == "ProductPage"){
             var purchasedProd = this.getOrderHistory();
             // Category checking
@@ -32,7 +33,7 @@ export class SimilarityChecker {
             }
             return false;
         }
-        return false; 
+        return false; */
     }
 
     getCurrentProdData(type:string):any {
