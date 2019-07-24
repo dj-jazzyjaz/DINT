@@ -66,7 +66,32 @@ export class AmazonProduct extends IProduct {
         var result: string[] = [];
         for (var i=0; i<doms.length; i++)
             result.push(doms[i].textContent!.trim());
-        return result;
+        if (result[0] == "Back to results") {
+            if (document.URL) {	        
+                // Get the URL	       
+                var URL = document.URL;
+                var res = URL.split("/");	       
+                // Get the ASIN from the URL and look it up	        
+                var ASIN;	            
+                // ASIN's length is 10 digits 	                
+                for(var i = 0; i < res.length; i++) {	                
+                    if (res[i].length == 10) {	           
+                        ASIN = res[i];	
+                        break;	
+                    }	
+                }	
+                if (ASIN) {
+                    location.replace("amazon.com/dp/" + ASIN);
+                }	
+                else {   	
+                    console.log("error");
+                }
+                return result;
+            }
+            return result; 
+        }
+        else 
+            return result;
     }
 
     protected setImage() {
