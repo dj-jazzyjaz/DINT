@@ -50,14 +50,16 @@ export class Extractor {
     }
 
     getPage() {
-        if (this.debug)
-            alert(JSON.stringify(this.extractor.getPageType()));
+        if (this.debug) {       
+            //alert(JSON.stringify(this.extractor.getPageType()));
+        }
         return this.extractor.getPageType();
     }
 
     getProduct() {
-        if (this.debug)
-            alert(JSON.stringify(this.product));
+        if (this.debug) {
+            //alert(JSON.stringify(this.product));
+        }         
         return this.product;
     }
 
@@ -70,6 +72,9 @@ export class Extractor {
     }
 
     addToCartAction() {
+        if(this.agent === undefined) {
+            this.agent = this.setAgent();
+        }
         this.agent.addToCartAction();
     }
 }

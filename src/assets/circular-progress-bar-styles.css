@@ -16,6 +16,11 @@
   vertical-align: middle;
 }
 
+.inNotif .CircularProgressbar {
+  width: 100px;
+  height: 100px;
+}
+
 .CircularProgressbar .CircularProgressbar-path {
   stroke: #3e98c7;
   stroke-linecap: round;

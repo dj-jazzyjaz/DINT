@@ -6,7 +6,7 @@ import { IAppState } from '../../background/store';
 import Notification from '../../components/notification/Notification';
 import { themes, ThemeTypes } from '../../components/styles/themes';
 import { INotification } from '../../background/store/reducers/notification';
-import { newNotif, testNotif } from '../../background/store/actions/notificationActions';
+import { newNotif, testNotif} from '../../background/store/actions/notificationActions';
 import { Extractor } from '../extraction/Extractor';
 import { Product, Goal } from '../../background/store/reducers';
 import { SimilarityChecker } from '../similarity/SimilarityChecker';
@@ -25,42 +25,28 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     constructor (props: INotificationScript) {
         super(props);
-        debugger;
         this.extractor = new Extractor();
         this.addToCartCallback = this.addToCartCallback.bind(this);
         this.similarityChecker = new SimilarityChecker();
+        this.extractorCartAction = this.extractorCartAction.bind(this);
     }
 
     componentWillMount (){
         this.extractor.setAddToCartCallback(this.addToCartCallback)      
-        
         this.props.dispatch(testNotif());
     }
 
-    componentDidUpdate() {
-        if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
-            //alert('recieve props');
-            console.log('update props');
-            debugger;
-            this.props.dispatch(newNotif({notificationType: "GOALMET"}))
-        } 
-    }
+    
 
-    componentWillUpdate() {
-        //alert('recieve props' + JSON.stringify(this.props));
-        if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
-           // alert('recieve props');
-            console.log('update props');
-            debugger;
-            //this.props.dispatch(newNotif({notificationType: "GOALMET"}))
-        }
+    componentDidUpdate() {
+        
     }
 
     addToCartCallback () {
         let extractorProduct = this.extractor.getProduct();
         //alert('add to cart callback');
         if (extractorProduct === null || extractorProduct === undefined) {
-            alert('not defined');
+            //alert('not defined');
             return;
         } else {
             let name = extractorProduct.getName();
@@ -73,12 +59,16 @@ class NotificationScript extends React.Component<INotificationScript> {
                 cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
             }
-            //alert('Found product ' +  JSON.stringify(product));
+
             if(this.similarityChecker.isSimilar(product)) {
                 //alert('Similar product ' + JSON.stringify(product));
                 this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
             }
         }    
+    }
+
+    extractorCartAction () {
+        this.extractor.addToCartAction();
     }
 
     render() {
@@ -87,7 +77,7 @@ class NotificationScript extends React.Component<INotificationScript> {
                 <React.Fragment>
                     <Container >
                         {this.props.notification.notificationType != 'NONE' && 
-                        <Notification addToCartAction={this.extractor.addToCartAction}/> }
+                        <Notification addToCartAction={this.extractorCartAction}/> }
                     </Container>
                 </React.Fragment>
             </ThemeProvider>
@@ -107,7 +97,7 @@ export default connect(mapStateToProps)(NotificationScript);
 
 const Container = styled('div')`
     position: fixed;
-    z-index: 9;
+    z-index: 50;
     bottom: 0;
     right: 0;
     background-color: ${p => p.theme.backgroundColor};
