@@ -10,8 +10,8 @@ export class SimilarityChecker {
         // matches any of the items in the user's order history 
         var purchasedProd = this.getOrderHistory();
         var orderHistory = purchasedProd.history;
-        alert("running similarity check");
         var currentProdCategory: string[];
+        
         // Category checking
        
         var currentProdCategory: string[] = (currentProduct.category)  ? currentProduct.category : [];
@@ -22,10 +22,11 @@ export class SimilarityChecker {
                     for (var j = currentProdCategory.length - 1; j >= 0; j--) {
                         // The closer to length the number that the match is found at, the more similar
                         // the closer to 0, the less similar they could be 
-                        // console.log("comparing " + currentProdCategory[j] + " and " + purchasedProdCategory[j]);
+                        // Right now it detects a broad match before a specific one
+                        // based on the order of the already purchased items
                         if (currentProdCategory[j] == purchasedProdCategory[i]){
-                            // console.log("positions " + i + " " + j);
-                            // console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
+                            console.log("positions " + i + " " + j);
+                            console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
                             return true;
                         } 
                     }
