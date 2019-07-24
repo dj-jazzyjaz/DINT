@@ -2,33 +2,17 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { green } from '../styles/themes';
 import { Product } from '../../background/store/reducers';
-import { CheckboxChecked, CheckboxUnchecked } from '../../../assets/SVGIcons';
 import { ButtonUnstyled } from '../styles/sharedElements';
 import { useDispatch } from 'react-redux';
 import { unfilterProduct } from '../../background/store/actions';
+import { CheckboxChecked } from '../../../assets/SVGIcons';
 
 export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const dispatch = useDispatch();
 
-    const [checked, setChecked] = React.useState(true);
-    const timeoutRef = React.useRef<any>();
-    const checkedRef = React.useRef(checked);
-
-    checkedRef.current = checked;
-
     const toggleChecked = React.useCallback(() => {
         dispatch(unfilterProduct(product));
-        // setChecked(!checked);
-
-        // if (timeoutRef.current)
-        //     clearTimeout(timeoutRef.current);
-
-        // timeoutRef.current = setTimeout(() => {
-        //     if (!checkedRef.current) {
-        //         dispatch(unfilterProduct(product));
-        //     }
-        // }, 2000);
-    }, [checked, setChecked, dispatch, product, timeoutRef]);
+    }, [product]);
 
     return (
         <React.Fragment>
@@ -36,7 +20,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                 <CheckboxContainer>
                     <ButtonUnstyled onClick={toggleChecked}>
                         <CheckboxIconContainer>
-                            {checked ? CheckboxChecked : CheckboxUnchecked}
+                            {CheckboxChecked}
                         </CheckboxIconContainer>
                     </ButtonUnstyled>
                     <CheckboxMessage>Do not notify me for repurchase</CheckboxMessage>
