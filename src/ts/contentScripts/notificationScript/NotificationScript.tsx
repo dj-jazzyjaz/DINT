@@ -60,9 +60,10 @@ class NotificationScript extends React.Component<INotificationScript> {
                 description: description ? description : "",
             }
 
-            if(this.similarityChecker.isSimilar(product)) {
+            if(this.similarityChecker.isSimilar(product) != undefined) {
                 //alert('Similar product ' + JSON.stringify(product));
-                this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
+                var matchedProd: Product | undefined = this.similarityChecker.isSimilar(product);
+                this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: matchedProd}))
             }
             else {
                 alert("not doing similarity check");
