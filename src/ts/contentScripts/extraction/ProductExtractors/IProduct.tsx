@@ -1,5 +1,6 @@
 export interface IPrice {
     getPrices(): Object;
+    getPrice(): Number;
 }
 
 export abstract class IProduct {
@@ -23,7 +24,7 @@ export abstract class IProduct {
     protected abstract setImage(): null | string;
     protected abstract setPrices(): IPrice;
 
-    abstract getPrice(): Number;
+    getPrice() { return this.getPrices().getPrice()};
     getName() {return this.name; }
     getDescription() { return this.description; }
     getCategory() { return this.category; }
