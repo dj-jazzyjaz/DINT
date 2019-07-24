@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import styled from 'styled-components';
 import { BoldDisplay } from '../styles/sharedElements';
 import { connect } from 'react-redux';
+import PurchaseHistory from '../purchaseHistory/PurchaseHistory';
 
 
 interface ISettingsProps {
@@ -20,6 +21,7 @@ class GoalProgress extends React.Component<ISettingsProps> {
         return (
             <GoalContainer>
                 <BoldDisplay>Settings </BoldDisplay>
+                <PurchaseHistory />
             </GoalContainer>
         );
     }
