@@ -12,6 +12,7 @@ export type GoalActions = Action<GoalActionTypes, GoalPayload>
 
 
 export function newGoal(goal: Goal) {
+    alert('new goal' + JSON.stringify(goal));
     return ({
         type: 'NEWGOAL',
         payload: {
