@@ -50,9 +50,8 @@ export class Extractor {
     }
 
     getPage() {
-        if (this.debug) {       
+        if (this.debug)
             //alert(JSON.stringify(this.extractor.getPageType()));
-        }
         return this.extractor.getPageType();
     }
 
