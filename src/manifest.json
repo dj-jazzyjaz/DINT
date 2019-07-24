@@ -39,7 +39,7 @@
     "content_scripts": [
         {
             "js": ["extraction.js", "notificationScript.js"],
-            "matches": ["https://www.amazon.com/*"]
+            "matches": ["https://www.amazon.com/*", "https://www.walmart.com/*"]
         }
     ]
 }

@@ -5,6 +5,8 @@ import { AmazonProduct } from './ProductExtractors/AmazonProduct';
 import { AmazonAgent } from './IAgent/AmazonAgent';
 import {IAgent} from './IAgent/IAgent';
 import { WalmartExtractor } from './PageExtractors/WalmartExtractor';
+import { WalmartProduct } from './ProductExtractors/WalmartProduct';
+import { WalmartAgent } from './IAgent/WalmartAgent';
 
 export class Extractor {
     private extractor: IExtractor;
@@ -37,6 +39,8 @@ export class Extractor {
         switch(this.extractor.getWebsite()) {
             case "https://www.amazon.com/":
                 return new AmazonProduct();
+            case "https://www.walmart.com/":
+                return new WalmartProduct();
             default:
                 throw " No product class implementation for that website.";
         }
@@ -46,6 +50,8 @@ export class Extractor {
         switch(this.extractor.getWebsite()) {
             case "https://www.amazon.com/":
                 return new AmazonAgent();
+            case "https://www.walmart.com/":
+                return new WalmartAgent();
             default:
                 throw " No product class implementation for that website.";
         }
