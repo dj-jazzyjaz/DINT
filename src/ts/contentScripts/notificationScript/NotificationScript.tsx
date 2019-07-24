@@ -8,7 +8,7 @@ import { themes, ThemeTypes } from '../../components/styles/themes';
 import { INotification } from '../../background/store/reducers/notification';
 import { newNotif, testNotif } from '../../background/store/actions/notificationActions';
 import { Extractor } from '../extraction/Extractor';
-import { Product } from '../../background/store/reducers';
+import { Product, Goal } from '../../background/store/reducers';
 import { SimilarityChecker } from '../similarity/SimilarityChecker';
 
 
@@ -16,6 +16,7 @@ interface INotificationScript {
     theme: ThemeTypes,
     dispatch: Dispatch;
     notification: INotification;
+    goal: Goal;
 }
 
 class NotificationScript extends React.Component<INotificationScript> {
@@ -34,6 +35,25 @@ class NotificationScript extends React.Component<INotificationScript> {
         this.extractor.setAddToCartCallback(this.addToCartCallback)      
         
         this.props.dispatch(testNotif());
+    }
+
+    componentDidUpdate() {
+        if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
+            //alert('recieve props');
+            console.log('update props');
+            debugger;
+            this.props.dispatch(newNotif({notificationType: "GOALMET"}))
+        } 
+    }
+
+    componentWillUpdate() {
+        //alert('recieve props' + JSON.stringify(this.props));
+        if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
+           // alert('recieve props');
+            console.log('update props');
+            debugger;
+            //this.props.dispatch(newNotif({notificationType: "GOALMET"}))
+        }
     }
 
     addToCartCallback () {
@@ -78,7 +98,8 @@ class NotificationScript extends React.Component<INotificationScript> {
 const mapStateToProps = (state: IAppState) => {
     return {
         theme: state.settings.theme,
-        notification: state.notification
+        notification: state.notification,
+        goal: state.goal.current ? state.goal.current : {goalAmount : -1, goalProgress: 0}
     };
 };
 

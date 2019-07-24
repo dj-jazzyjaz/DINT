@@ -27,6 +27,12 @@ class GoalProgress extends React.Component<IGoalProps> {
         //this.props.dispatch(testGoal());
     }
 
+    componentWillReceiveProps () {
+        if(this.props.goal.goalAmount <= this.props.goal.goalProgress) {
+            this.props.dispatch(changeView("SETGOAL"));
+        } 
+    }
+
     devSave () {
         //this.props.dispatch(testGoal());
         console.log('hi');
