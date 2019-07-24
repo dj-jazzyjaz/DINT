@@ -2,7 +2,7 @@ import {Extractor} from "./Extractor"
 //import { SimilarityChecker } from '../similarity/SimilarityChecker';
 
 // Extractor
-var extractor = new Extractor(false);
+var extractor = new Extractor(true);
 extractor.getPage();
 extractor.getProduct();
 //extractor.setAddToCartCallback(() => alert("it works!"));

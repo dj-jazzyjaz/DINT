@@ -9,6 +9,7 @@ export abstract class IProduct {
     private description: null | string;
     private category: null | string[];
     private image: null | string;
+    private url: null | string;
     private prices: IPrice;
 
     constructor() {
@@ -18,6 +19,7 @@ export abstract class IProduct {
         this.category = this.setCategories();
         this.prices = this.setPrices();
         this.image = this.setImage();
+        this.url = this.setUrl();
     }
 
     protected abstract setName(): null | string;
@@ -25,7 +27,9 @@ export abstract class IProduct {
     protected abstract setDescription(): null | string;
     protected abstract setCategories(): null | string[];
     protected abstract setImage(): null | string;
+    protected abstract setUrl(): null | string;
     protected abstract setPrices(): IPrice;
+    
 
     getPrice() { return this.getPrices().getPrice() };
     getName() { return this.name; }
@@ -33,6 +37,7 @@ export abstract class IProduct {
     getDescription() { return this.description; }
     getCategory() { return this.category; }
     getImage() { return this.image; }
+    getUrl() { return this.url; }
     getPrices() { return this.prices; }
 
 

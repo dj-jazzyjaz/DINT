@@ -78,5 +78,6 @@ export class AmazonProduct extends IProduct {
         return dom.getAttribute('data-old-hires');
     }
 
+    protected setUrl() { return location.href; }
     protected setPrices() { return new AmazonPrice(); }
 }
