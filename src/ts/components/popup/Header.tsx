@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
 import { ThemeTypes } from '../styles/themes';
-import { Trophy, Ringer, Settings } from '../../../assets/SVGIcons';
+import { Trophy, Settings, Equalizer } from '../../../assets/SVGIcons';
 import { changeView } from '../../background/store/actions/viewsActions';
 
 interface IHeader {
@@ -18,6 +18,7 @@ class Header extends React.Component<IHeader> {
 
 		this.onGoalClick = this.onGoalClick.bind(this);
 		this.onSettingsClick = this.onSettingsClick.bind(this);
+		this.onFiltersClick = this.onFiltersClick.bind(this);
 	}
 
 	onGoalClick () {
@@ -28,13 +29,17 @@ class Header extends React.Component<IHeader> {
 		this.props.dispatch(changeView("SETTINGS"));
 	}
 
+	onFiltersClick () {
+		this.props.dispatch(changeView("PRODUCTFILTERS"));
+	}
+
 	render() {
 		return (
 			<HeaderContainer>
 				<Display>DINT</Display>
 				<Buttons>
 					<HeaderButton onClick={this.onGoalClick}>{Trophy}</HeaderButton>
-					<HeaderButton>{Ringer}</HeaderButton>
+					<HeaderButton onClick={this.onFiltersClick}>{Equalizer}</HeaderButton>
 					<HeaderButton onClick={this.onSettingsClick}>{Settings}</HeaderButton>
 				</Buttons>
 			</HeaderContainer>
