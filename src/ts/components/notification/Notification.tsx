@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
-import { buy, dontBuy, newNotif } from '../../background/store/actions/notificationActions';
+import { buy, newNotif } from '../../background/store/actions/notificationActions';
 import { INotification } from '../../background/store/reducers/notification';
 import { ProductDisplay } from '../product/ProductDisplay';
 import { Display, Controls, Button, ButtonGreen, BoldDisplay } from '../styles/sharedElements';

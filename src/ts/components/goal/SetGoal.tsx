@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
-import goal, { IGoal } from '../../background/store/reducers/Goal';
+import { IGoal } from '../../background/store/reducers/Goal';
 import { BoldDisplay, Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 import { newGoal } from '../../background/store/actions/goalActions';
 import { changeView } from '../../background/store/actions/viewsActions';
