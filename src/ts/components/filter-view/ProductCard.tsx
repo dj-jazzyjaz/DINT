@@ -11,23 +11,24 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const dispatch = useDispatch();
 
     const [checked, setChecked] = React.useState(true);
-    const timeoutRef = React.useRef<NodeJS.Timeout>();
+    const timeoutRef = React.useRef<any>();
     const checkedRef = React.useRef(checked);
 
     checkedRef.current = checked;
 
     const toggleChecked = React.useCallback(() => {
-        setChecked(!checked);
+        dispatch(unfilterProduct(product));
+        // setChecked(!checked);
 
-        if (timeoutRef.current)
-            clearTimeout(timeoutRef.current);
+        // if (timeoutRef.current)
+        //     clearTimeout(timeoutRef.current);
 
-        timeoutRef.current = setTimeout(() => {
-            if (!checkedRef.current) {
-                dispatch(unfilterProduct(product));
-            }
-        }, 2000);
-    }, [checked, setChecked, dispatch, product])
+        // timeoutRef.current = setTimeout(() => {
+        //     if (!checkedRef.current) {
+        //         dispatch(unfilterProduct(product));
+        //     }
+        // }, 2000);
+    }, [checked, setChecked, dispatch, product, timeoutRef]);
 
     return (
         <React.Fragment>
@@ -57,7 +58,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             </ProductCardContainer>
             <hr />
         </React.Fragment>
-    )
+    );
 };
 
 const ProductCardContainer = styled('div')`
