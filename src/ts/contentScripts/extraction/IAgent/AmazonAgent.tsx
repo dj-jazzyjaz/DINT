@@ -1,3 +1,5 @@
+import { IAgent } from './IAgent';
+
 export class AmazonAgent implements IAgent {
     private debug: boolean;
 

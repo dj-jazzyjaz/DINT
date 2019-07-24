@@ -3,6 +3,7 @@ import {AmazonExtractor} from './PageExtractors/AmazonExtractor'
 import { IProduct } from './ProductExtractors/IProduct';
 import { AmazonProduct } from './ProductExtractors/AmazonProduct';
 import { AmazonAgent } from './IAgent/AmazonAgent';
+import {IAgent} from './IAgent/IAgent';
 
 export class Extractor {
     private extractor: IExtractor;
