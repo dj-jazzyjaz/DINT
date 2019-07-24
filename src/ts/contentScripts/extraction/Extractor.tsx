@@ -51,13 +51,13 @@ export class Extractor {
 
     getPage() {
         if (this.debug)
-            alert(JSON.stringify(this.extractor.getPageType()));
+            //alert(JSON.stringify(this.extractor.getPageType()));
         return this.extractor.getPageType();
     }
 
     getProduct() {
         if (this.debug)
-            alert(JSON.stringify(this.product));
+            //alert(JSON.stringify(this.product));
         return this.product;
     }
 

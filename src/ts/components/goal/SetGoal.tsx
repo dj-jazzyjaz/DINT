@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
-import { IGoal } from '../../background/store/reducers/Goal';
+import goal, { IGoal } from '../../background/store/reducers/Goal';
 import { BoldDisplay, Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
 import { newGoal } from '../../background/store/actions/goalActions';
 import { changeView } from '../../background/store/actions/viewsActions';
@@ -15,6 +15,7 @@ interface IGoalProps {
 
 interface SetGoalState {
     goalValue: number,
+    goalDescription: string,
 }
 class SetGoal extends React.Component<IGoalProps, SetGoalState> {
     constructor (props: IGoalProps) {
@@ -22,16 +23,23 @@ class SetGoal extends React.Component<IGoalProps, SetGoalState> {
 
         this.state = {
             goalValue: 0,
+            goalDescription: "",
         }
 
         this.onSetClick = this.onSetClick.bind(this);
         this.onGoalInput = this.onGoalInput.bind(this);
         this.onCancelClick = this.onCancelClick.bind(this);
+        this.onGoalDescriptionInput = this.onGoalDescriptionInput.bind(this);
     }
 
     onSetClick() {
         let value = this.state.goalValue;
-        this.props.dispatch(newGoal({goalAmount: value, goalProgress: 0}));
+        if (value <= 0) { alert("Please set a goal greater than $0"); return; }
+        if (this.state.goalDescription === "") {
+            this.props.dispatch(newGoal({goalAmount: value, goalProgress: 0 }));
+        } else {
+            this.props.dispatch(newGoal({goalAmount: value, goalProgress: 0, description: this.state.goalDescription}));
+        }
         this.props.dispatch(changeView("GOALPROGRESS"));
     }
 
@@ -41,9 +49,16 @@ class SetGoal extends React.Component<IGoalProps, SetGoalState> {
         })
     }
 
+    onGoalDescriptionInput (e: React.ChangeEvent<HTMLTextAreaElement>) {
+        this.setState({
+            goalDescription: e.currentTarget.value,
+        })
+    }
+
     onCancelClick () {
         this.setState({
             goalValue: 0,
+            goalDescription: ""
         })
     }
 
@@ -52,7 +67,10 @@ class SetGoal extends React.Component<IGoalProps, SetGoalState> {
             <GoalContainer>
                 <BoldDisplay>New Goal</BoldDisplay>
                 <Display>Create a new goal to begin building your savings</Display>
-                <Display style={{textAlign: 'center'}}>$ <input type="number" id="goalInput" onChange={this.onGoalInput} value={this.state.goalValue}></input></Display>
+                <Display style={{textAlign: 'center'}}>$ <input type="number" id="goalInput" onChange={this.onGoalInput} value={this.state.goalValue} style={{width: 50}}></input></Display>
+                <Display style={{textAlign: 'center'}}>Goal description: 
+                </Display>
+                <textarea id="goalDescription" onChange={this.onGoalDescriptionInput} value={this.state.goalDescription} style={{height: '3em', width: 275, fontFamily: 'inherit'}}/>
                 <Controls>
                     <ButtonGreen onClick={this.onSetClick}>Set</ButtonGreen>
                     <Button onClick={this.onCancelClick}>Cancel</Button>

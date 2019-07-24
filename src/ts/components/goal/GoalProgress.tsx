@@ -20,12 +20,8 @@ class GoalProgress extends React.Component<IGoalProps> {
 
         this.devSave = this.devSave.bind(this);
     }
-    componentWillMount (){
-        //this.props.dispatch(testGoal());
-    }
-
+    
     devSave () {
-        //this.props.dispatch(testGoal());
         console.log('hi');
         if(this.props.goal.goalAmount <= this.props.goal.goalProgress + 10) {
             this.props.dispatch(countProductTowardsGoal({name: 'mug', cost: 10,}))
@@ -44,7 +40,7 @@ class GoalProgress extends React.Component<IGoalProps> {
                         My savings
                     </BoldDisplay>
                     <Display>
-                        Current goal: {  this.props.goal.name ? this.props.goal.name : "Untitled"}
+                        Current goal: { (this.props.goal.description != undefined) ? this.props.goal.description : "Untitled"}
                     </Display>
                     <Display>
                         Goal amount: { this.props.goal.goalAmount }
@@ -79,8 +75,6 @@ const GoalContainer = styled('div')`
     justify-content: space-between;
     align-items: start;
     min-width: 100px;
-    padding: 5px;
-    margin: 5px;
     background-color: ${p => p.theme.backgroundColor};
 `;
 

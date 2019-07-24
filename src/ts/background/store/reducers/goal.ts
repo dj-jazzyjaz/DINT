@@ -4,7 +4,6 @@ import { GoalActions } from '../actions/goalActions';
 export interface Goal {
 	goalAmount: number,
 	goalProgress: number,
-	name?: string,
 	date?: Date,
 	description?: string
 }
@@ -42,7 +41,7 @@ const goal: Reducer<IGoal, GoalActions> = (state = initialState, action) => {
 				current: state.current,
 				history: payload.goal ? state.history.slice().concat(payload.goal) : state.history.slice() };
 		case 'INCREMENTGOAL':
-				alert("increment " + JSON.stringify(payload) + JSON.stringify(state) )
+				//alert("increment " + JSON.stringify(payload) + JSON.stringify(state) )
 				return {
 					...state, 
 					current: {
