@@ -3,15 +3,16 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IAppState } from '../../background/store';
-import { buy, dontBuy} from '../../background/store/actions/notificationActions';
+import { buy, dontBuy } from '../../background/store/actions/notificationActions';
 import { INotification } from '../../background/store/reducers/notification';
 import { ProductDisplay } from '../product/ProductDisplay';
-import { Display, Controls, Button, ButtonGreen } from '../styles/sharedElements';
+import { Display, Controls, Button, ButtonGreen, BoldDisplay } from '../styles/sharedElements';
 import { countProductTowardsGoal } from '../../background/store/actions/goalActions';
 import { addToPurchaseHistory } from '../../background/store/actions/productActions';
 import { Equalizer } from '../../../assets/SVGIcons';
 import { filterProduct } from '../../background/store/actions';
 import { IFilter } from '../../background/store/reducers';
+import SetGoal from '../goal/SetGoal';
 
 interface INotificationProps {
     notification: INotification,
@@ -53,18 +54,33 @@ class Notification extends React.Component<INotificationProps> {
     render() {
         return (
             <NotificationContainer>
-                <Display>
-                    Duplicate item detected
-                </Display>
+               
                 {
                     (this.props.notification.notificationType === 'SIMILAR') && this.props.notification.product && 
-                    <ProductDisplay product={this.props.notification.product}/>
+                    <div>
+                         <Display>
+                            Duplicate item detected
+                        </Display>
+                        <ProductDisplay product={this.props.notification.product}/>
+                    </div>          
                 }
-                <Controls>
-                    <ButtonGreen onClick={this.dontBuy}>Remove and Save</ButtonGreen>
-                    <Button onClick={this.buy}>Buy</Button>
-                    <Button onClick={this.addToFilter} style={{padding: '10px 12px'}}>{Equalizer}</Button>
-                </Controls>
+                {
+                    (this.props.notification.notificationType === 'SIMILAR') && 
+                    (<Controls>
+                        <ButtonGreen onClick={this.dontBuy}>Remove and Save</ButtonGreen>
+                        <Button onClick={this.buy}>Buy</Button>
+                        <Button onClick={this.addToFilter} style={{padding: '10px 12px'}}>{Equalizer}</Button>
+                    </Controls>)
+                }
+                {
+                    (this.props.notification.notificationType === 'GOALMET') &&
+                    (<div>
+                        <BoldDisplay>Congratulations!</BoldDisplay>
+                        <Display>You met your goal. Set a new goal.</Display>
+                        <SetGoal/>
+                    </div>)
+                }
+                
             </NotificationContainer>
         );
     }
