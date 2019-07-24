@@ -39,8 +39,8 @@ class Notification extends React.Component<INotificationProps> {
     buy = () => {
         this.props.addToCartAction();
         this.props.dispatch(buy({}));
-        if (this.props.notification.product) {
-            this.props.dispatch(addToPurchaseHistory(this.props.notification.product));
+        if (this.props.notification.productCurrent) {
+            this.props.dispatch(addToPurchaseHistory(this.props.notification.productCurrent));
         } 
         
         
@@ -55,13 +55,13 @@ class Notification extends React.Component<INotificationProps> {
     }
 
     dontBuy = () => {
-        if (this.props.notification.product) {
-            if (this.props.goal.goalAmount > this.props.goal.goalProgress + this.props.notification.product.cost) {
-                this.productCache = this.props.notification.product
+        if (this.props.notification.productCurrent) {
+            if (this.props.goal.goalAmount > this.props.goal.goalProgress + this.props.notification.productCurrent.cost) {
+                this.productCache = this.props.notification.productCurrent
                 this.props.dispatch(newNotif({notificationType: 'GOALPROGRESS'}))
                 setTimeout(this.addToSaveHistory, 300);
                 setTimeout(this.closeNotification, 4000);
-            } else if(this.props.goal.goalAmount <= this.props.goal.goalProgress + this.props.notification.product.cost) {
+            } else if(this.props.goal.goalAmount <= this.props.goal.goalProgress + this.props.notification.productCurrent.cost) {
                 this.props.dispatch(newNotif({notificationType: "GOALMET"}))
                 this.addToSaveHistory;
             } 
@@ -69,8 +69,8 @@ class Notification extends React.Component<INotificationProps> {
     };
 
     addToFilter = () => {
-        if (this.props.notification.product) {
-            this.props.dispatch(filterProduct(this.props.notification.product))
+        if (this.props.notification.productCurrent) {
+            this.props.dispatch(filterProduct(this.props.notification.productCurrent))
         }
     };
 
@@ -78,12 +78,12 @@ class Notification extends React.Component<INotificationProps> {
         return (
             <NotificationContainer> 
                 {
-                    (this.props.notification.notificationType === 'SIMILAR') && this.props.notification.product && 
+                    (this.props.notification.notificationType === 'SIMILAR') && this.props.notification.productMatched && 
                     <div>
                          <Display>
-                            Similar item detected
+                            You have recently purchased a similar item:
                         </Display>
-                        <ProductDisplay product={this.props.notification.product}/>
+                        <ProductDisplay product={this.props.notification.productMatched}/>
                     </div>          
                 }
                 {

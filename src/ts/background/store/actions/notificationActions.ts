@@ -8,7 +8,8 @@ import { Product } from '../reducers/product';
 export type NotificationActionTypes = 'NEWNOTIF' | 'BUY' | 'DONTBUY' | 'TESTNOTIF' ;
 export interface NotificationPayload {
     notificationType?: NotificationType,
-    product?: Product,
+    productCurrent?: Product,
+	productMatched?: Product
 };
 
 export type NotificationActions = Action<NotificationActionTypes, NotificationPayload>

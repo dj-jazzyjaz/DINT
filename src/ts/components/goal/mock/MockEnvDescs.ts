@@ -3,14 +3,12 @@ import { EnvDesc } from '../env-desc';
 export const EnvDescs: EnvDesc[] = [
     {
         impactType: 'H2O',
-        description: 'Ur hurting them waters fam',
+        amount: '720 gallons of water saved',
+        description: 'CO2 level indicates total emissions caused during the manufactor and processing of product',
     },
     {
         impactType: 'CO2',
-        description: 'Aw geez rick the clouds are getting mad',
+        amount: '2.6 metric tons of CO2 emissisions saved',
+        description: 'H2O level indicates water usage to grow, produce and process a product',
     },
-    {
-        impactType: 'H2O',
-        description: 'yeah waterguns are typicaly not super eco with water',
-    }
 ];
