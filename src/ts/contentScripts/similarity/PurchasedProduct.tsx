@@ -59,6 +59,9 @@ export class PurchasedProduct extends IProduct {
         var arr:string[] = ["Toys & Games", "Building Toys", "Building Sets"];
         return arr;
     }
+    protected setImage() {
+        return null;
+    }
 
     // Eventually return the real price of course
     protected setPrices() { return new AmazonPrice(); }
