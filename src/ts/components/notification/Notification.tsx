@@ -67,6 +67,7 @@ const NotificationContainer = styled('div')`
     min-width: 100px;
     padding: 5px;
     margin: 5px;
+    z-index: 20;
     background-color: ${p => p.theme.backgroundColor};
 `;
 

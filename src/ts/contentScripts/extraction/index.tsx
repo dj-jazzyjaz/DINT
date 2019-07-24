@@ -1,5 +1,5 @@
 import {Extractor} from "./Extractor"
-import { SimilarityChecker } from '../similarity/SimilarityChecker';
+//import { SimilarityChecker } from '../similarity/SimilarityChecker';
 
 // Extractor
 var extractor = new Extractor(false);
@@ -8,9 +8,9 @@ extractor.getProduct();
 extractor.setAddToCartCallback(() => alert("it works!"));
 
 // Similarity 
-var similarityChecker1 = new SimilarityChecker();
-var similarityFound = similarityChecker1.isSimilar();
+/*var similarityChecker1 = new SimilarityChecker();
+var similarityFound = similarityChecker1.isSimilar(produc);
 if (similarityFound)
     console.log("Similarity Found");
 else
-    console.log("No Similarity Found");
+    console.log("No Similarity Found");*/
