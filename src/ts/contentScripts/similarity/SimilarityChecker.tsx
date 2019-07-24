@@ -12,23 +12,26 @@ export class SimilarityChecker {
         var pageChecker = new AmazonExtractor();
         if (pageChecker.getPageType() == "ProductPage"){
             var purchasedProd = this.getOrderHistory();
+            var orderHistory = purchasedProd.history;
+
             // Category checking
             var currentProdCategory: string = this.getCurrentProdData("Category");
-            var purchasedProdCategory = ""; //purchasedProd.getCategory(); 
-            //var smallestCategory = currentProdCategory[currentProdCategory.length-1];
-            if (purchasedProdCategory != null) {
-                for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
-                    for (var j = currentProdCategory.length - 1; j >= 0; j--) {
-                        // The closer to length the number that the match is found at, the more similar
-                        // the closer to 0, the less similar they could be 
-                        if (currentProdCategory[j] == purchasedProdCategory[i]){
-                            console.log("positions " + i + " " + j);
-                            console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
-                            return true;
-                        } 
+            for (var m = 0; m < orderHistory.length; m++) {
+                var purchasedProdCategory:any = orderHistory[m].category;
+                if (purchasedProdCategory != null) {
+                    for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
+                        for (var j = currentProdCategory.length - 1; j >= 0; j--) {
+                            // The closer to length the number that the match is found at, the more similar
+                            // the closer to 0, the less similar they could be 
+                            // console.log("comparing " + currentProdCategory[j] + " and " + purchasedProdCategory[j]);
+                            if (currentProdCategory[j] == purchasedProdCategory[i]){
+                                // console.log("positions " + i + " " + j);
+                                // console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
+                                return true;
+                            } 
+                        }
                     }
                 }
-                return false; 
             }
             return false;
         }
