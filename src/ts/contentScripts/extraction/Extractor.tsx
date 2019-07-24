@@ -56,8 +56,9 @@ export class Extractor {
     }
 
     getProduct() {
-        if (this.debug)
+        if (this.debug) {
             //alert(JSON.stringify(this.product));
+        }         
         return this.product;
     }
 
@@ -70,6 +71,9 @@ export class Extractor {
     }
 
     addToCartAction() {
+        if(this.agent === undefined) {
+            this.agent = this.setAgent();
+        }
         this.agent.addToCartAction();
     }
 }

@@ -5,7 +5,7 @@ import { Product } from '../reducers/product';
 //import { addToPurchaseHistory } from './productActions';
 //import { countProductTowardsGoal } from './goalActions';
 
-export type NotificationActionTypes = 'NEWNOTIF' | 'BUY' | 'DONTBUY' | 'TESTNOTIF';
+export type NotificationActionTypes = 'NEWNOTIF' | 'BUY' | 'DONTBUY' | 'TESTNOTIF' ;
 export interface NotificationPayload {
     notificationType?: NotificationType,
     product?: Product,
@@ -35,6 +35,7 @@ export function dontBuy(payload: NotificationPayload) {
         payload: payload
     })
 }
+
 export function testNotif(){
     return ({
         type: 'TESTNOTIF'

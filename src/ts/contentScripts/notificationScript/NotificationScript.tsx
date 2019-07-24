@@ -6,9 +6,9 @@ import { IAppState } from '../../background/store';
 import Notification from '../../components/notification/Notification';
 import { themes, ThemeTypes } from '../../components/styles/themes';
 import { INotification } from '../../background/store/reducers/notification';
-import { newNotif, testNotif } from '../../background/store/actions/notificationActions';
+import { newNotif, testNotif} from '../../background/store/actions/notificationActions';
 import { Extractor } from '../extraction/Extractor';
-import { Product } from '../../background/store/reducers';
+import { Product, Goal } from '../../background/store/reducers';
 import { SimilarityChecker } from '../similarity/SimilarityChecker';
 
 
@@ -16,6 +16,7 @@ interface INotificationScript {
     theme: ThemeTypes,
     dispatch: Dispatch;
     notification: INotification;
+    goal: Goal;
 }
 
 class NotificationScript extends React.Component<INotificationScript> {
@@ -24,23 +25,28 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     constructor (props: INotificationScript) {
         super(props);
-        debugger;
         this.extractor = new Extractor();
         this.addToCartCallback = this.addToCartCallback.bind(this);
         this.similarityChecker = new SimilarityChecker();
+        this.extractorCartAction = this.extractorCartAction.bind(this);
     }
 
     componentWillMount (){
         this.extractor.setAddToCartCallback(this.addToCartCallback)      
-        
         this.props.dispatch(testNotif());
+    }
+
+    
+
+    componentDidUpdate() {
+        
     }
 
     addToCartCallback () {
         let extractorProduct = this.extractor.getProduct();
         //alert('add to cart callback');
         if (extractorProduct === null || extractorProduct === undefined) {
-            alert('not defined');
+            //alert('not defined');
             return;
         } else {
             let name = extractorProduct.getName();
@@ -49,11 +55,12 @@ class NotificationScript extends React.Component<INotificationScript> {
             let product: Product = {
                 name: name ? name : "",
                 site: site ? site: "",
+                category: extractorProduct.getCategory() || undefined,
                 cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
             }
-            //alert('Found product ' + JSON.stringify(product));
-            if(true || this.similarityChecker.isSimilar(product)) {
+
+            if(this.similarityChecker.isSimilar(product)) {
                 //alert('Similar product ' + JSON.stringify(product));
                 this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
             }
@@ -63,13 +70,17 @@ class NotificationScript extends React.Component<INotificationScript> {
         }    
     }
 
+    extractorCartAction () {
+        this.extractor.addToCartAction();
+    }
+
     render() {
         return (
             <ThemeProvider theme={themes[this.props.theme]}>
                 <React.Fragment>
                     <Container >
                         {this.props.notification.notificationType != 'NONE' && 
-                        <Notification addToCartAction={this.extractor.addToCartAction}/> }
+                        <Notification addToCartAction={this.extractorCartAction}/> }
                     </Container>
                 </React.Fragment>
             </ThemeProvider>
@@ -80,7 +91,8 @@ class NotificationScript extends React.Component<INotificationScript> {
 const mapStateToProps = (state: IAppState) => {
     return {
         theme: state.settings.theme,
-        notification: state.notification
+        notification: state.notification,
+        goal: state.goal.current ? state.goal.current : {goalAmount : -1, goalProgress: 0}
     };
 };
 
@@ -88,7 +100,7 @@ export default connect(mapStateToProps)(NotificationScript);
 
 const Container = styled('div')`
     position: fixed;
-    z-index: 9;
+    z-index: 50;
     bottom: 0;
     right: 0;
     background-color: ${p => p.theme.backgroundColor};

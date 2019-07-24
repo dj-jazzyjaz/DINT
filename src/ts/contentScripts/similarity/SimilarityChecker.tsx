@@ -4,35 +4,52 @@ import { RProduct, Product } from '../../background/store/reducers';
 
 export class SimilarityChecker {
 
-    isSimilar(currentProduct: Product):boolean {
+    isSimilar(currentProduct: Product):Product {
         // This parses through the order history arrary and sees 
         // if any keywords from the current product's data 
         // matches any of the items in the user's order history 
-        var purchasedProd = this.getOrderHistory();
-        var orderHistory = purchasedProd.history;
-        alert("running similarity check");
+        var orderHistory = this.getOrderHistory().history;
         var currentProdCategory: string[];
+        var catIndex:Number, index:Number = -1;
+        
         // Category checking
        
         var currentProdCategory: string[] = (currentProduct.category)  ? currentProduct.category : [];
+        // history loop
         for (var m = 0; m < orderHistory.length; m++) {
             var purchasedProdCategory:any = orderHistory[m].category;
             if (purchasedProdCategory != null) {
+                // purchased prod loop
                 for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
+                    // current prod loop
                     for (var j = currentProdCategory.length - 1; j >= 0; j--) {
-                        // The closer to length the number that the match is found at, the more similar
-                        // the closer to 0, the less similar they could be 
-                        // console.log("comparing " + currentProdCategory[j] + " and " + purchasedProdCategory[j]);
                         if (currentProdCategory[j] == purchasedProdCategory[i]){
-                            // console.log("positions " + i + " " + j);
-                            // console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
-                            return true;
+                            if (i >= j && i >= index) {
+                                index = i; 
+                                catIndex = m;
+                                console.log("positions " + i + " " + j);
+                                console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
+                            }
+                            else if (j >= i && j >= index) {
+                                index = j; 
+                                catIndex = m;
+                            }
                         } 
                     }
                 }
             }
         }
-        return false;
+        console.log(catIndex);
+        if (catIndex >= 0 && index > 0){
+            return this.getMatchedItem(catIndex);
+        }
+        return undefined;
+    }
+
+    getMatchedItem(index:any):Product {
+        var result:Product = this.getOrderHistory().history[index];
+        alert("matched with " + JSON.stringify(result));
+        return result;
     }
 
     getCurrentProdData(type:string):any {
