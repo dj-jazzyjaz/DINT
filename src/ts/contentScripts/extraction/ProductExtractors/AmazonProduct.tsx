@@ -9,6 +9,14 @@ class AmazonPrice implements IPrice{
         this.ourPrice = this.setOurPrice();
     }
 
+    getPrice() {
+        if (this.dealPrice == null && this.ourPrice == null)
+            return NaN;
+        if (this.dealPrice == null)
+            return this.ourPrice;
+        return this.dealPrice;
+    }
+
     getPrices() {
         return {
             dealPrice: this.dealPrice,
@@ -59,10 +67,12 @@ export class AmazonProduct extends IProduct {
     }
 
     protected setImage() {
+        debugger;
         var dom = document.querySelector("img#landingImage");
         if (dom == null)
             return null;
-        return dom.getAttribute('src');
+
+        return dom.getAttribute('data-old-hires');
     }
 
     protected setPrices() { return new AmazonPrice(); }
