@@ -6,9 +6,10 @@ import { IAppState } from '../../background/store';
 import Notification from '../../components/notification/Notification';
 import { themes, ThemeTypes } from '../../components/styles/themes';
 import { INotification } from '../../background/store/reducers/notification';
-import { testNotif, newNotif } from '../../background/store/actions/notificationActions';
+import { newNotif, testNotif } from '../../background/store/actions/notificationActions';
 import { Extractor } from '../extraction/Extractor';
 import { Product } from '../../background/store/reducers';
+import { SimilarityChecker } from '../similarity/SimilarityChecker';
 
 
 interface INotificationScript {
@@ -19,41 +20,46 @@ interface INotificationScript {
 
 class NotificationScript extends React.Component<INotificationScript> {
     private extractor: Extractor;
+    private similarityChecker: SimilarityChecker;
+
     constructor (props: INotificationScript) {
         super(props);
-        this.onMessageRecieve = this.onMessageRecieve.bind(this);
-        chrome.runtime.onMessage.addListener(this.onMessageRecieve);
         debugger;
         this.extractor = new Extractor();
-    }
-    onMessageRecieve(_message: any, _sender: any, _response: any) {
-        //debugger;
-        //alert("message recieved " + message);
+        this.addToCartCallback = this.addToCartCallback.bind(this);
+        this.similarityChecker = new SimilarityChecker();
     }
 
     componentWillMount (){
+        this.extractor.setAddToCartCallback(this.addToCartCallback)      
+        
         this.props.dispatch(testNotif());
+    }
+
+    addToCartCallback () {
         let extractorProduct = this.extractor.getProduct();
-        if (extractorProduct === null) {
+        alert('add to cart callback');
+        if (extractorProduct === null || extractorProduct === undefined) {
+            alert('not defined');
             return;
         } else {
             let name = extractorProduct.getName();
             let description = extractorProduct.getDescription();
             let product: Product = {
                 name: name ? name : "",
-                cost: 0,
+                cost: extractorProduct.getPrice() as number,
                 description: description ? description : "",
             }
-            alert('Similar product ' + JSON.stringify(product));
-            this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
-        }     
-        debugger;
+            alert('Found product ' + JSON.stringify(product));
+            if(this.similarityChecker.isSimilar(product)) {
+                alert('Similar product ' + JSON.stringify(product));
+                this.props.dispatch(newNotif({notificationType: 'SIMILAR', product: product}))
+            }
+            else
+                alert("not doing similarity check");
+        }    
     }
 
-    componentDidMount () {
-        
-    }
-    
     render() {
         return (
             <ThemeProvider theme={themes[this.props.theme]}>

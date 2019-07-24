@@ -2,38 +2,37 @@ import { AmazonExtractor } from '../extraction/PageExtractors/AmazonExtractor';
 import { AmazonProduct } from '../extraction/ProductExtractors/AmazonProduct';
 import { RProduct, Product } from '../../background/store/reducers';
 
-
 export class SimilarityChecker {
 
-    isSimilar():boolean {
+    isSimilar(currentProduct: Product):boolean {
         // This parses through the order history arrary and sees 
         // if any keywords from the current product's data 
         // matches any of the items in the user's order history 
-        return true;
-        /*var pageChecker = new AmazonExtractor();
-        if (pageChecker.getPageType() == "ProductPage"){
-            var purchasedProd = this.getOrderHistory();
-            // Category checking
-            var currentProdCategory: string = this.getCurrentProdData("Category");
-            var purchasedProdCategory = ""; //purchasedProd.getCategory(); 
-            //var smallestCategory = currentProdCategory[currentProdCategory.length-1];
+        var purchasedProd = this.getOrderHistory();
+        var orderHistory = purchasedProd.history;
+        alert("running similarity check");
+        var currentProdCategory: string[];
+        // Category checking
+       
+        var currentProdCategory: string[] = (currentProduct.category)  ? currentProduct.category : [];
+        for (var m = 0; m < orderHistory.length; m++) {
+            var purchasedProdCategory:any = orderHistory[m].category;
             if (purchasedProdCategory != null) {
                 for (var i = purchasedProdCategory.length-1; i >= 0; i--) {
                     for (var j = currentProdCategory.length - 1; j >= 0; j--) {
                         // The closer to length the number that the match is found at, the more similar
                         // the closer to 0, the less similar they could be 
+                        // console.log("comparing " + currentProdCategory[j] + " and " + purchasedProdCategory[j]);
                         if (currentProdCategory[j] == purchasedProdCategory[i]){
-                            console.log("positions " + i + " " + j);
-                            console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
+                            // console.log("positions " + i + " " + j);
+                            // console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
                             return true;
                         } 
                     }
                 }
-                return false; 
             }
-            return false;
         }
-        return false; */
+        return false;
     }
 
     getCurrentProdData(type:string):any {
