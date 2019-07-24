@@ -13,8 +13,8 @@ class AmazonPrice implements IPrice{
         if (this.dealPrice == null && this.ourPrice == null)
             return NaN;
         if (this.dealPrice == null)
-            return this.ourPrice;
-        return this.dealPrice;
+            return this.ourPrice!;
+        return this.dealPrice!;
     }
 
     getPrices() {
