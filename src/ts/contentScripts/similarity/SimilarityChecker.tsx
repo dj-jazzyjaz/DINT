@@ -27,8 +27,8 @@ export class SimilarityChecker {
                             if (i >= j && i >= index) {
                                 index = i; 
                                 catIndex = m;
-                                //console.log("positions " + i + " " + j);
-                                //console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
+                                console.log("positions " + i + " " + j);
+                                console.log("found match at " + currentProdCategory[j] + " and " + purchasedProdCategory[i]);
                             }
                             else if (j >= i && j >= index) {
                                 index = j; 
@@ -40,7 +40,7 @@ export class SimilarityChecker {
             }
         }
         console.log(catIndex);
-        if (catIndex > 0 && index >= 0){
+        if (catIndex >= 0 && index > 0){
             return this.getMatchedItem(catIndex);
         }
         return undefined;
