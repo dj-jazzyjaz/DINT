@@ -27,8 +27,8 @@ class NotificationScript extends React.Component<INotificationScript> {
         this.extractor = new Extractor();
     }
     onMessageRecieve(message: any, _sender: any, _response: any) {
-        debugger;
-        alert("message recieved " + message);
+        //debugger;
+        //alert("message recieved " + message);
     }
 
     componentWillMount (){

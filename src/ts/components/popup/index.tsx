@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Store } from 'react-chrome-redux';
 import PopupApp from './PopupApp';
+import { PersistGate } from 'redux-persist/integration/react';
+import storage from '../../background/index';
 
 const store = new Store({
     portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
@@ -11,7 +13,9 @@ const store = new Store({
 store.ready().then(() => {
     ReactDOM.render(
         <Provider store={store}>
-            <PopupApp />
+            <PersistGate loading={"Loading"} persistor={storage.persistor}>
+                <PopupApp />
+            </PersistGate>
         </Provider>
         , document.getElementById('popup-root'))
 });
