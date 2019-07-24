@@ -33,13 +33,6 @@ class NotificationScript extends React.Component<INotificationScript> {
 
     componentWillMount (){
         this.extractor.setAddToCartCallback(this.addToCartCallback)      
-        this.props.dispatch(testNotif());
-    }
-
-    
-
-    componentDidUpdate() {
-        
     }
 
     addToCartCallback () {
@@ -101,8 +94,8 @@ export default connect(mapStateToProps)(NotificationScript);
 const Container = styled('div')`
     position: fixed;
     z-index: 50;
-    bottom: 0;
-    right: 0;
+    bottom: 10px;
+    right: 10px;
     background-color: ${p => p.theme.backgroundColor};
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;

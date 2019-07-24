@@ -38,6 +38,7 @@ const ProductInfo = styled('div')`
     justify-content: space-between;
     align-items: left;
     margin: 5px;
+    max-width: 200px;
 `;
 
 const ProductName = styled('div')`

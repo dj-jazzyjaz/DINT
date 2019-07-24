@@ -21,7 +21,7 @@ export const ProductCard:React.FC<{
                         </ProductDetail>
                         <ProductDetail>
                             <ProductDetailLabel>Price:</ProductDetailLabel>
-                            <ProductPrice>{product.cost}</ProductPrice>
+                            <ProductPrice>${product.cost}</ProductPrice>
                         </ProductDetail>
                     </ProductDetailsContainer>
                 </ProductInfoContainer>

@@ -80,26 +80,31 @@ export class SimilarityChecker {
             name: "Jurassic World Chomp 'n Roar Mask Velociraptor \"blue\"",
             cost: 10,
             category: ["Toys & Games ", "Dress Up",  "Pretend Play", "Masks"],
+            site: "Amazon",
         }
         product2 = {
             name: "JWSilk Extra Wide Silk Chiffon Scarf Floral Print",
             cost: 10,
             category: ["Clothing, Shoes & Jewelry", "Women", "Accessories", "Scarves & Wraps", "Fashion Scarves"],
+            site: "Amazon",
         }
         product3 = {
             name: "BRONAX Men's Stylish Graffiti Personality Sneakers",
             cost: 10,
             category: ["Clothing, Shoes & Jewelry", "Men",  "Shoes",  "Athletic", "Tennis & Racquet Sports"],
+            site: "Amazon",
         }
         product4 = {
             name: "Made In The A.M.",
             cost: 10,
             category: ["CDs & Vinyl", "Alternative Rock", "British Alternative", "Britpop"],
+            site: "Amazon",
         }
         product5 = {
             name: "Hello Is It Tea You're Looking For Poster 11x14",
             cost: 10,
             category: ["Handmade Products", "Home & Kitchen", "Artwork", "Posters"],
+            site: "Amazon",
         }
 
         fakeHistory = {

@@ -86,12 +86,11 @@ class GoalProgress extends React.Component<IGoalProps> {
                         Current goal: { (this.props.goal.description != undefined) ? this.props.goal.description : "Untitled"}
                     </Display>
                     <Display>
-                        Goal amount: { this.props.goal.goalAmount }
+                        Goal amount: ${ this.props.goal.goalAmount }
                     </Display>
-                    <Display>Goal Progress: {this.props.goal.goalProgress}</Display>
                     
                 {
-                    devMode && <Button onClick={this.devSave}>+</Button>
+                    devMode && <Button onClick={this.devSave}>Reset Goal</Button>
                 }
                 </CatContainer>
                { (!this.props.inNotif) &&
