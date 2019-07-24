@@ -11,6 +11,8 @@ import SetGoal from '../goal/SetGoal';
 import { popUpViewType } from '../../background/store/reducers/views';
 import { FilterView } from '../filter-view';
 import Settings from './Settings';
+import { SimilarityChecker } from '../../contentScripts/similarity/SimilarityChecker';
+import { addToPurchaseHistory } from '../../background/store/actions/productActions';
 
 interface IPopupApp {
 	theme: ThemeTypes;
@@ -19,6 +21,18 @@ interface IPopupApp {
 }
 
 class PopupApp extends React.Component<IPopupApp> {
+	private similarityChecker: SimilarityChecker;
+	constructor(props: IPopupApp){
+		super(props);
+		this.similarityChecker = new SimilarityChecker();
+	}
+	
+	componentWillMount() {
+		let fakeHistory = this.similarityChecker.getOrderHistory().history;
+        for(var i = 0; i < fakeHistory.length; i++) {
+            this.props.dispatch(addToPurchaseHistory(fakeHistory[i]));
+        }
+	}
 
 	render() {
 		return (
