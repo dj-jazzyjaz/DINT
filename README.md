@@ -1,7 +1,13 @@
 # DINT
+## Project Description
+DINT: Do I Need This, is a web browser extension aimed to help online shoppers make better purchasing decisions. Whenever a user tries to purchase an item similar to what they purchased earlier, DINT notifies them about the repeat purchase and gives them an opportunity to reflect on whether they really need it. We also allow users to set a saving goal, monitor their progress towards that goal, view their purchase history, and filter notifications for certain products such as necessities. 
 
-</div>
-
+The next steps for development include:  
+	• Support multiple browsers, e-commerce websites, and devices including mobile, tablets as well as voice-enabled  
+	• Display the environmental impact of product purchases.  
+	• Suggest eco-friendly product alternatives.  
+	• Train ML models to efficiently detect impulsive buys and when to notify users  to save.  
+	• Gamification to award users badges such as a Smart Saver, and Sustainability Champion, allowing them to share achievements on social media and refer friends.  
 
 ## Repo structure
 ts  
