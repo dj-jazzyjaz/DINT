@@ -1,7 +1,8 @@
 ### Project specifics ###
 dist/
 node_modules/
-
+dist.pem
+dist.crx
 
 
 # Created by https://www.gitignore.io/api/node,macos,linux,eclipse,windows,intellij,visualstudio,microsoftoffice,visualstudiocode

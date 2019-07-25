@@ -77,7 +77,7 @@ export class SimilarityChecker {
         // Create fake history
         var fakeHistory:RProduct; 
         
-        var product1:Product, product2:Product, product3:Product, product4:Product, product5:Product;
+        var product1:Product, product2:Product, product3:Product, product4:Product, product5:Product, product6:Product;
         product1 = {
             name: "Jurassic World Chomp 'n Roar Mask Velociraptor \"blue\"",
             cost: 10,
@@ -113,10 +113,17 @@ export class SimilarityChecker {
             site: "Amazon",
             imgSrc: "https://images-na.ssl-images-amazon.com/images/I/41ZulkjoURL._QL70_.jpg"
         }
+        product6 = {
+            name: "Crest Cavity Protection Regular Toothpaste,",
+            cost: 10,
+            category: ["Personal care", "Oral care"],
+            site: "Walmart",
+            imgSrc: "https://i5.walmartimages.com/asr/6db3974d-604b-4021-93bb-18fc21a80b51_1.608a0dbdec34b710a4851edc9dc2af77.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF"
+        }
 
         fakeHistory = {
             current: null,
-            history: [product1, product2, product3, product4, product5]
+            history: [product1, product2, product3, product4, product5, product6]
         }
 
         return fakeHistory;
