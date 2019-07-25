@@ -14,17 +14,10 @@ ts
 -contentScripts  
 
 ## Set up info: 
-This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. See below for the setup doc from that repo.
-### Good to know before using:
-* [Typescript](https://www.typescriptlang.org/)
-* [React](https://reactjs.org/)
-* [redux](https://redux.js.org/)
-* [styled-components](https://www.styled-components.com/)
+This codebase uses the Web Extension starter https://github.com/ymdevs/Web-Extension-Starter. Please see its README for more set up info.  
 
-### Requirements:
-* [NodeJS](https://nodejs.org/en/) - Javascript runtime -- Use version 10
-* [VSCode](https://code.visualstudio.com/) - Recomended editor
-* [Chrome](https://www.google.com/chrome/) or [Firefox](https://www.mozilla.org/en-US/firefox/) - Web browser
+Requirement: [NodeJS](https://nodejs.org/en/) - Javascript runtime -- Use version 10  
+
 
 ### How to run:
 #### In terminal or command prompt
