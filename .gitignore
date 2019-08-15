@@ -4,6 +4,7 @@ node_modules/
 dist.pem
 dist.crx
 package-lock.json
+yarn.lock
 
 
 # Created by https://www.gitignore.io/api/node,macos,linux,eclipse,windows,intellij,visualstudio,microsoftoffice,visualstudiocode
